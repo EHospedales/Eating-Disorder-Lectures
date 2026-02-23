@@ -134,6 +134,10 @@ python -m streamlit run app.py --server.address 0.0.0.0 --server.port 8502
 In the browser UI you can:
 - Select format (`standard`, `lightning_round`, `audience_response`)
 - Use default quiz bank or upload a custom JSON bank
+- Add new categories and questions directly in the app (MCQ, True/False, Case Vignette)
+- Edit and delete existing questions directly in the app
+- Import a previously edited bank and either replace or merge into current working bank
+- Download the updated quiz bank JSON after editing
 - Choose question types to include (`multiple_choice`, `true_false`, `case_vignette`)
 - Filter by categories and search question text/IDs
 - Pick either random sample, first N, or exact questions from a readable selector

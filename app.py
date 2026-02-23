@@ -68,6 +68,103 @@ def _question_label(question: dict) -> str:
     )
 
 
+def _all_question_ids(quiz_bank: dict) -> set[str]:
+    ids = set()
+    for category in quiz_bank.get("categories", []):
+        for question in category.get("questions", []):
+            qid = question.get("id")
+            if qid:
+                ids.add(qid)
+    return ids
+
+
+def _category_map(quiz_bank: dict) -> dict[str, dict]:
+    return {
+        category.get("name", "Uncategorized"): category
+        for category in quiz_bank.get("categories", [])
+    }
+
+
+def _add_category_if_missing(quiz_bank: dict, category_name: str):
+    category_name = category_name.strip()
+    if not category_name:
+        return
+    existing = _category_map(quiz_bank)
+    if category_name not in existing:
+        quiz_bank.setdefault("categories", []).append({"name": category_name, "questions": []})
+
+
+def _add_question_to_bank(quiz_bank: dict, category_name: str, question: dict):
+    _add_category_if_missing(quiz_bank, category_name)
+    categories = _category_map(quiz_bank)
+    categories[category_name].setdefault("questions", []).append(question)
+
+
+def _all_questions_with_category(quiz_bank: dict):
+    for category in quiz_bank.get("categories", []):
+        category_name = category.get("name", "Uncategorized")
+        for question in category.get("questions", []):
+            yield category_name, question
+
+
+def _merge_quiz_banks(base_bank: dict, incoming_bank: dict, overwrite_existing: bool) -> tuple[int, int]:
+    """Merge incoming questions into base bank by question ID.
+
+    Returns tuple: (added_count, updated_count)
+    """
+    base_index = {}
+    for category_name, question in _all_questions_with_category(base_bank):
+        qid = question.get("id")
+        if qid:
+            base_index[qid] = (category_name, question)
+
+    added_count = 0
+    updated_count = 0
+
+    for incoming_category_name, incoming_question in _all_questions_with_category(incoming_bank):
+        incoming_id = incoming_question.get("id")
+        if not incoming_id:
+            continue
+
+        if incoming_id in base_index:
+            if not overwrite_existing:
+                continue
+
+            current_category_name, _current_question = base_index[incoming_id]
+            _delete_question_from_bank(base_bank, incoming_id)
+            _add_question_to_bank(
+                base_bank,
+                incoming_category_name or current_category_name,
+                json.loads(json.dumps(incoming_question)),
+            )
+            updated_count += 1
+        else:
+            _add_question_to_bank(
+                base_bank,
+                incoming_category_name,
+                json.loads(json.dumps(incoming_question)),
+            )
+            added_count += 1
+
+    return added_count, updated_count
+
+
+def _find_question_entry(quiz_bank: dict, question_id: str):
+    for category in quiz_bank.get("categories", []):
+        for idx, question in enumerate(category.get("questions", [])):
+            if question.get("id") == question_id:
+                return category, idx, question
+    return None, None, None
+
+
+def _delete_question_from_bank(quiz_bank: dict, question_id: str) -> bool:
+    category, idx, _question = _find_question_entry(quiz_bank, question_id)
+    if category is None:
+        return False
+    category.get("questions", []).pop(idx)
+    return True
+
+
 st.subheader("1) Quiz Bank")
 use_default_bank = st.checkbox("Use default quiz bank", value=True)
 uploaded_bank = None
@@ -91,6 +188,351 @@ except Exception as exc:
 if not quiz_bank:
     st.info("Load a quiz bank to continue.")
     st.stop()
+
+source_signature = "default" if use_default_bank else (
+    uploaded_bank.name if uploaded_bank is not None else "none"
+)
+if (
+    "working_quiz_bank" not in st.session_state
+    or st.session_state.get("bank_source_signature") != source_signature
+):
+    st.session_state["working_quiz_bank"] = json.loads(json.dumps(quiz_bank))
+    st.session_state["bank_source_signature"] = source_signature
+
+quiz_bank = st.session_state["working_quiz_bank"]
+
+st.subheader("1b) Edit Question Bank (Optional)")
+with st.expander("Add categories/questions from the frontend", expanded=False):
+    st.markdown("### Import previously edited bank")
+    import_bank_file = st.file_uploader(
+        "Upload edited quiz bank JSON",
+        type=["json"],
+        key="import_bank_file",
+        help="Import a previously downloaded quiz bank file.",
+    )
+    import_mode = st.radio(
+        "Import mode",
+        ["Replace current working bank", "Merge into current working bank"],
+        horizontal=False,
+        key="import_mode",
+    )
+    overwrite_existing_ids = st.checkbox(
+        "When merging, overwrite existing questions with matching IDs",
+        value=False,
+        key="merge_overwrite_ids",
+    )
+    if st.button("Apply imported bank", key="apply_imported_bank"):
+        if import_bank_file is None:
+            st.error("Upload a JSON file to import.")
+        else:
+            try:
+                imported_bank = json.loads(import_bank_file.getvalue().decode("utf-8"))
+                if not isinstance(imported_bank, dict) or "categories" not in imported_bank:
+                    st.error("Invalid quiz bank format: missing top-level 'categories'.")
+                else:
+                    if import_mode == "Replace current working bank":
+                        st.session_state["working_quiz_bank"] = imported_bank
+                        st.session_state["selected_question_ids"] = []
+                        st.success("Replaced current working bank with imported bank.")
+                    else:
+                        added_count, updated_count = _merge_quiz_banks(
+                            quiz_bank,
+                            imported_bank,
+                            overwrite_existing=overwrite_existing_ids,
+                        )
+                        st.success(
+                            f"Merge complete. Added: {added_count}, Updated: {updated_count}."
+                        )
+                    st.rerun()
+            except Exception as exc:
+                st.error("Unable to import quiz bank JSON.")
+                st.exception(exc)
+
+    existing_categories = [c.get("name", "Uncategorized") for c in quiz_bank.get("categories", [])]
+
+    new_category_col_1, new_category_col_2 = st.columns([3, 1])
+    with new_category_col_1:
+        new_category_name = st.text_input(
+            "New category name",
+            placeholder="e.g., Emergency Psychiatry Pearls",
+            key="new_category_name",
+        ).strip()
+    with new_category_col_2:
+        if st.button("Add category"):
+            if not new_category_name:
+                st.error("Enter a category name first.")
+            elif new_category_name in existing_categories:
+                st.warning("That category already exists.")
+            else:
+                _add_category_if_missing(quiz_bank, new_category_name)
+                st.success(f"Added category: {new_category_name}")
+                st.rerun()
+
+    st.markdown("### Add a new question")
+    q_type = st.selectbox(
+        "Question type",
+        ["multiple_choice", "true_false", "case_vignette"],
+        key="add_q_type",
+    )
+
+    category_options = [c.get("name", "Uncategorized") for c in quiz_bank.get("categories", [])]
+    selected_category = st.selectbox(
+        "Category",
+        category_options,
+        key="add_q_category",
+    )
+
+    with st.form("add_question_form"):
+        q_id = st.text_input("Question ID", placeholder="e.g., CUSTOM-001").strip()
+        board_topic = st.text_input("Board topic label", placeholder="Short topic label").strip()
+        difficulty = st.selectbox("Difficulty", ["easy", "medium", "hard"]) 
+        question_text = st.text_area("Question stem", height=110).strip()
+
+        clinical_stem = ""
+        choices = {}
+        answer = ""
+
+        if q_type in {"multiple_choice", "case_vignette"}:
+            choice_col_1, choice_col_2 = st.columns(2)
+            with choice_col_1:
+                choice_a = st.text_input("Choice A").strip()
+                choice_b = st.text_input("Choice B").strip()
+            with choice_col_2:
+                choice_c = st.text_input("Choice C").strip()
+                choice_d = st.text_input("Choice D").strip()
+            choices = {"A": choice_a, "B": choice_b, "C": choice_c, "D": choice_d}
+            answer = st.selectbox("Correct answer", ["A", "B", "C", "D"]).strip()
+
+            if q_type == "case_vignette":
+                clinical_stem = st.text_area("Clinical stem", height=120).strip()
+
+        if q_type == "true_false":
+            answer = st.selectbox("Correct answer", ["true", "false"]).strip()
+
+        explanation = st.text_area("Explanation", height=120).strip()
+
+        add_question_clicked = st.form_submit_button("Add question to bank")
+
+        if add_question_clicked:
+            existing_ids = _all_question_ids(quiz_bank)
+
+            if not q_id:
+                st.error("Question ID is required.")
+            elif q_id in existing_ids:
+                st.error("Question ID already exists. Use a unique ID.")
+            elif not question_text:
+                st.error("Question stem is required.")
+            elif not explanation:
+                st.error("Explanation is required.")
+            elif q_type in {"multiple_choice", "case_vignette"} and any(not v for v in choices.values()):
+                st.error("All choices A-D are required for this question type.")
+            elif q_type == "case_vignette" and not clinical_stem:
+                st.error("Clinical stem is required for case vignette questions.")
+            else:
+                new_question = {
+                    "id": q_id,
+                    "type": q_type,
+                    "question": question_text,
+                    "answer": answer,
+                    "explanation": explanation,
+                    "difficulty": difficulty,
+                    "board_topic": board_topic or selected_category,
+                }
+
+                if q_type in {"multiple_choice", "case_vignette"}:
+                    new_question["choices"] = choices
+                if q_type == "case_vignette":
+                    new_question["clinical_stem"] = clinical_stem
+
+                _add_question_to_bank(quiz_bank, selected_category, new_question)
+                st.success(f"Added question {q_id} to {selected_category}.")
+                st.rerun()
+
+    st.markdown("### Edit or delete an existing question")
+    editable_flat = _flatten_questions(quiz_bank)
+
+    if not editable_flat:
+        st.info("No existing questions to edit yet.")
+    else:
+        edit_option_map = {
+            _question_label(item): item["id"]
+            for item in editable_flat
+        }
+        edit_choice = st.selectbox(
+            "Select question to edit",
+            options=["-- Select question --", *edit_option_map.keys()],
+        )
+
+        if edit_choice != "-- Select question --":
+            edit_qid = edit_option_map[edit_choice]
+            current_category, _current_idx, current_question = _find_question_entry(quiz_bank, edit_qid)
+
+            if current_question is not None:
+                current_type = current_question.get("type", "multiple_choice")
+                current_choices = current_question.get("choices", {})
+                category_options = [c.get("name", "Uncategorized") for c in quiz_bank.get("categories", [])]
+                current_category_name = current_category.get("name", "Uncategorized")
+                if current_category_name not in category_options:
+                    category_options.append(current_category_name)
+
+                with st.form("edit_question_form"):
+                    edit_q_id = st.text_input("Question ID", value=current_question.get("id", "")).strip()
+                    edit_q_type = st.selectbox(
+                        "Question type",
+                        ["multiple_choice", "true_false", "case_vignette"],
+                        index=["multiple_choice", "true_false", "case_vignette"].index(current_type)
+                        if current_type in {"multiple_choice", "true_false", "case_vignette"}
+                        else 0,
+                    )
+                    edit_category = st.selectbox(
+                        "Category",
+                        category_options,
+                        index=category_options.index(current_category_name),
+                    )
+                    edit_board_topic = st.text_input(
+                        "Board topic label",
+                        value=current_question.get("board_topic", ""),
+                    ).strip()
+                    edit_difficulty = st.selectbox(
+                        "Difficulty",
+                        ["easy", "medium", "hard"],
+                        index=["easy", "medium", "hard"].index(current_question.get("difficulty", "medium"))
+                        if current_question.get("difficulty", "medium") in {"easy", "medium", "hard"}
+                        else 1,
+                    )
+                    edit_question_text = st.text_area(
+                        "Question stem",
+                        value=current_question.get("question", ""),
+                        height=110,
+                    ).strip()
+
+                    edit_clinical_stem = ""
+                    edit_answer = ""
+                    edit_choices = {}
+
+                    if edit_q_type in {"multiple_choice", "case_vignette"}:
+                        edit_choice_col_1, edit_choice_col_2 = st.columns(2)
+                        with edit_choice_col_1:
+                            edit_choice_a = st.text_input("Choice A", value=current_choices.get("A", "")).strip()
+                            edit_choice_b = st.text_input("Choice B", value=current_choices.get("B", "")).strip()
+                        with edit_choice_col_2:
+                            edit_choice_c = st.text_input("Choice C", value=current_choices.get("C", "")).strip()
+                            edit_choice_d = st.text_input("Choice D", value=current_choices.get("D", "")).strip()
+
+                        edit_choices = {
+                            "A": edit_choice_a,
+                            "B": edit_choice_b,
+                            "C": edit_choice_c,
+                            "D": edit_choice_d,
+                        }
+                        edit_answer = st.selectbox(
+                            "Correct answer",
+                            ["A", "B", "C", "D"],
+                            index=["A", "B", "C", "D"].index(current_question.get("answer", "A"))
+                            if current_question.get("answer", "A") in {"A", "B", "C", "D"}
+                            else 0,
+                        ).strip()
+
+                        if edit_q_type == "case_vignette":
+                            edit_clinical_stem = st.text_area(
+                                "Clinical stem",
+                                value=current_question.get("clinical_stem", ""),
+                                height=120,
+                            ).strip()
+
+                    if edit_q_type == "true_false":
+                        current_tf_answer = str(current_question.get("answer", "true")).strip().lower()
+                        edit_answer = st.selectbox(
+                            "Correct answer",
+                            ["true", "false"],
+                            index=0 if current_tf_answer == "true" else 1,
+                        ).strip()
+
+                    edit_explanation = st.text_area(
+                        "Explanation",
+                        value=current_question.get("explanation", ""),
+                        height=120,
+                    ).strip()
+
+                    save_edit_clicked = st.form_submit_button("Save changes")
+
+                    if save_edit_clicked:
+                        existing_ids = _all_question_ids(quiz_bank)
+
+                        if not edit_q_id:
+                            st.error("Question ID is required.")
+                        elif edit_q_id != edit_qid and edit_q_id in existing_ids:
+                            st.error("Question ID already exists. Use a unique ID.")
+                        elif not edit_question_text:
+                            st.error("Question stem is required.")
+                        elif not edit_explanation:
+                            st.error("Explanation is required.")
+                        elif edit_q_type in {"multiple_choice", "case_vignette"} and any(
+                            not value for value in edit_choices.values()
+                        ):
+                            st.error("All choices A-D are required for this question type.")
+                        elif edit_q_type == "case_vignette" and not edit_clinical_stem:
+                            st.error("Clinical stem is required for case vignette questions.")
+                        else:
+                            updated_question = {
+                                "id": edit_q_id,
+                                "type": edit_q_type,
+                                "question": edit_question_text,
+                                "answer": edit_answer,
+                                "explanation": edit_explanation,
+                                "difficulty": edit_difficulty,
+                                "board_topic": edit_board_topic or edit_category,
+                            }
+
+                            if edit_q_type in {"multiple_choice", "case_vignette"}:
+                                updated_question["choices"] = edit_choices
+                            if edit_q_type == "case_vignette":
+                                updated_question["clinical_stem"] = edit_clinical_stem
+
+                            old_category = current_category_name
+                            _delete_question_from_bank(quiz_bank, edit_qid)
+                            _add_question_to_bank(quiz_bank, edit_category, updated_question)
+
+                            if "selected_question_ids" in st.session_state:
+                                selected_set = set(st.session_state["selected_question_ids"])
+                                if edit_qid in selected_set:
+                                    selected_set.remove(edit_qid)
+                                    selected_set.add(edit_q_id)
+                                    st.session_state["selected_question_ids"] = sorted(selected_set)
+
+                            st.success(
+                                f"Updated question {edit_qid} → {edit_q_id} "
+                                f"({old_category} → {edit_category})."
+                            )
+                            st.rerun()
+
+                delete_confirm = st.checkbox(
+                    f"Confirm delete question {edit_qid}",
+                    key=f"confirm_delete_{edit_qid}",
+                )
+                if st.button("Delete selected question", key=f"delete_button_{edit_qid}"):
+                    if not delete_confirm:
+                        st.error("Please confirm deletion first.")
+                    else:
+                        deleted = _delete_question_from_bank(quiz_bank, edit_qid)
+                        if deleted:
+                            if "selected_question_ids" in st.session_state:
+                                st.session_state["selected_question_ids"] = [
+                                    qid for qid in st.session_state["selected_question_ids"]
+                                    if qid != edit_qid
+                                ]
+                            st.success(f"Deleted question {edit_qid}.")
+                            st.rerun()
+                        else:
+                            st.warning("Question not found; it may have already been removed.")
+
+    bank_json = json.dumps(quiz_bank, indent=2, ensure_ascii=False)
+    st.download_button(
+        label="Download updated quiz bank JSON",
+        data=bank_json.encode("utf-8"),
+        file_name="quiz_bank_updated.json",
+        mime="application/json",
+    )
 
 flat_questions = _flatten_questions(quiz_bank)
 if not flat_questions:
@@ -245,7 +687,7 @@ else:
                 "question": item["question"],
             }
         )
-    st.dataframe(table_rows, use_container_width=True, hide_index=True, height=340)
+    st.dataframe(table_rows, width="stretch", hide_index=True, height=340)
 
 st.session_state["selected_question_ids"] = selected_question_ids
 

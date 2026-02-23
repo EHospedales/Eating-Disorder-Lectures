@@ -128,6 +128,36 @@
           "explanation": "OSFED includes: (1) Atypical AN (normal/high weight but meets all other AN criteria), (2) BN of low frequency/duration, (3) BED of low frequency/duration, (4) Purging disorder (purging without binge eating), and (5) Night eating syndrome. Atypical AN is important clinically—these patients may be medically unstable despite not appearing underweight.",
           "difficulty": "hard",
           "board_topic": "OSFED"
+        },
+        {
+          "id": "DSM-009",
+          "type": "multiple_choice",
+          "question": "In DSM-5-TR, severity specifiers for Anorexia Nervosa in adults are primarily based on:",
+          "choices": {
+            "A": "Frequency of binge episodes per week",
+            "B": "Degree of body image distortion",
+            "C": "Body mass index (BMI)",
+            "D": "Duration of illness"
+          },
+          "answer": "C",
+          "explanation": "DSM-5-TR AN severity is based on BMI in adults (Mild ≥17, Moderate 16-16.99, Severe 15-15.99, Extreme <15). Clinical judgment can override these cutoffs if functional impairment or medical risk is greater than BMI alone suggests.",
+          "difficulty": "medium",
+          "board_topic": "AN Severity Specifiers"
+        },
+        {
+          "id": "DSM-010",
+          "type": "multiple_choice",
+          "question": "DSM-5-TR severity specifiers for Bulimia Nervosa are determined by:",
+          "choices": {
+            "A": "Current BMI",
+            "B": "Frequency of inappropriate compensatory behaviors",
+            "C": "Number of objective binge episodes only",
+            "D": "Presence or absence of electrolyte abnormalities"
+          },
+          "answer": "B",
+          "explanation": "BN severity is based on the average number of inappropriate compensatory behaviors per week: Mild 1-3, Moderate 4-7, Severe 8-13, Extreme 14+. This is a high-yield DSM-5-TR distinction from AN severity, which is BMI-based.",
+          "difficulty": "medium",
+          "board_topic": "BN Severity Specifiers"
         }
       ]
     },
@@ -303,6 +333,36 @@
           "explanation": "Perimylolysis is erosion of the lingual (tongue-side) surface of the upper teeth from repeated exposure to gastric acid during vomiting. It is often the first physical sign identified by dentists. Patients should be counseled to rinse with sodium bicarbonate and NOT brush immediately after vomiting (brushing spreads acid).",
           "difficulty": "easy",
           "board_topic": "Dental Complications – BN"
+        },
+        {
+          "id": "MED-008",
+          "type": "multiple_choice",
+          "question": "A patient with chronic self-induced vomiting abruptly stops purging and develops peripheral edema and rapid weight gain over several days. What is the most likely mechanism?",
+          "choices": {
+            "A": "Acute nephrotic syndrome",
+            "B": "Pseudo-Bartter physiology with secondary hyperaldosteronism",
+            "C": "Congestive heart failure from myocarditis",
+            "D": "SIADH due to SSRI use"
+          },
+          "answer": "B",
+          "explanation": "Chronic purging activates RAAS and leads to secondary hyperaldosteronism (pseudo-Bartter state). When purging stops, persistent aldosterone activity promotes sodium/water retention and edema. This is common in early BN recovery and can be managed with reassurance and careful fluid/sodium guidance; some patients may need short-term mineralocorticoid antagonism.",
+          "difficulty": "hard",
+          "board_topic": "Pseudo-Bartter Syndrome"
+        },
+        {
+          "id": "MED-009",
+          "type": "multiple_choice",
+          "question": "Which thyroid pattern is most typical in severe malnutrition from Anorexia Nervosa?",
+          "choices": {
+            "A": "High T3, high T4, low TSH",
+            "B": "Low T3 with normal/low-normal T4 and normal/low-normal TSH",
+            "C": "High TSH with high thyroid peroxidase antibodies",
+            "D": "Isolated high reverse T3 suppression due to hypermetabolism"
+          },
+          "answer": "B",
+          "explanation": "Severe AN is associated with euthyroid sick physiology: low T3, often normal to low-normal T4, and non-elevated TSH. This reflects metabolic adaptation to starvation rather than primary thyroid disease. Thyroid hormone replacement is generally not indicated unless there is separate true hypothyroidism.",
+          "difficulty": "medium",
+          "board_topic": "Endocrine Adaptation – AN"
         }
       ]
     },
@@ -448,6 +508,36 @@
           "explanation": "Fluoxetine at 60 mg/day is the first-line medication for BN; it also treats comorbid MDD. Bupropion is contraindicated in BN due to seizure risk. TCAs and MAOIs have evidence for BN but adverse effect profiles make them second/third-line. The combination of CBT-E + fluoxetine is superior to either alone.",
           "difficulty": "medium",
           "board_topic": "Comorbid MDD + BN Treatment"
+        },
+        {
+          "id": "PHARM-006",
+          "type": "multiple_choice",
+          "question": "Which medication has evidence for reducing binge frequency in BED but requires counseling about cognitive slowing and paresthesias?",
+          "choices": {
+            "A": "Topiramate",
+            "B": "Lamotrigine",
+            "C": "Lithium",
+            "D": "Mirtazapine"
+          },
+          "answer": "A",
+          "explanation": "Topiramate has evidence for reducing binge frequency and can produce weight loss, but adverse effects include cognitive slowing, word-finding difficulty, paresthesias, nephrolithiasis risk, and teratogenicity concerns. It is not FDA-approved for BED, unlike lisdexamfetamine.",
+          "difficulty": "medium",
+          "board_topic": "Off-Label BED Pharmacotherapy"
+        },
+        {
+          "id": "PHARM-007",
+          "type": "multiple_choice",
+          "question": "Which statement about medication use in Anorexia Nervosa is MOST accurate?",
+          "choices": {
+            "A": "SSRIs are consistently effective for acute weight restoration in severely underweight AN",
+            "B": "No medication is FDA-approved for AN, and nutritional rehabilitation remains central",
+            "C": "Bupropion is preferred in AN due to activating properties",
+            "D": "Stimulants are first-line for AN with restricting subtype"
+          },
+          "answer": "B",
+          "explanation": "No medication is FDA-approved for AN. Nutritional rehabilitation and psychotherapy are first-line. SSRIs are often less effective in acute severe malnutrition, though they may be used for comorbid mood/anxiety symptoms after partial weight restoration. Bupropion is avoided in patients at increased seizure risk.",
+          "difficulty": "easy",
+          "board_topic": "AN Pharmacotherapy Principles"
         }
       ]
     },
@@ -637,6 +727,22 @@
           "explanation": "This is a classic presentation of ARFID: avoidance based on sensory characteristics (smell, texture), early childhood onset, no fear of weight gain or body image disturbance, limited food variety, and nutritional/growth impairment. ARFID can be driven by sensory sensitivity (most common), lack of interest in food, or fear of aversive consequences. It differs from AN by the absence of weight/shape concerns.",
           "difficulty": "easy",
           "board_topic": "ARFID Diagnosis"
+        },
+        {
+          "id": "VIG-005",
+          "type": "case_vignette",
+          "clinical_stem": "A 19-year-old woman with severe restricting-type AN is admitted after syncope. BMI is 14.2, heart rate 44 bpm, and blood pressure 86/52 mmHg. Refeeding is started. On hospital day 3 she develops new weakness and mild dyspnea. Labs show phosphorus 1.1 mg/dL, potassium 3.1 mEq/L, magnesium 1.5 mg/dL.",
+          "question": "What is the BEST immediate management priority?",
+          "choices": {
+            "A": "Increase calories rapidly to reverse catabolism",
+            "B": "Begin intensive exercise to reduce edema risk",
+            "C": "Treat suspected refeeding syndrome with prompt electrolyte repletion and careful monitored refeeding",
+            "D": "Discontinue nutrition support until all labs normalize"
+          },
+          "answer": "C",
+          "explanation": "This presentation is classic for refeeding syndrome with severe hypophosphatemia and associated electrolyte deficits. Immediate management includes phosphate/potassium/magnesium repletion, cardiac monitoring, and carefully titrated nutritional advancement rather than abrupt cessation or aggressive calorie escalation.",
+          "difficulty": "hard",
+          "board_topic": "Refeeding Syndrome Management"
         }
       ]
     },
@@ -687,6 +793,24 @@
           "explanation": "Refeeding syndrome is characterized by HYPOPHOSPHATEMIA (dangerously LOW phosphate), not elevated. When carbohydrates are reintroduced after starvation, insulin release drives phosphate into cells, depleting serum phosphate and impairing ATP production in all organ systems.",
           "difficulty": "medium",
           "board_topic": "Refeeding Syndrome – Lab Findings"
+        },
+        {
+          "id": "TF-006",
+          "type": "true_false",
+          "question": "A QTc interval greater than 500 ms in a severely malnourished patient with AN increases risk of life-threatening ventricular arrhythmias.",
+          "answer": "True",
+          "explanation": "QTc >500 ms is a major cardiac red flag and can precede torsades de pointes or ventricular fibrillation, especially in the setting of hypokalemia/hypomagnesemia. This finding supports urgent medical monitoring and electrolyte correction.",
+          "difficulty": "medium",
+          "board_topic": "Cardiac Risk – AN"
+        },
+        {
+          "id": "TF-007",
+          "type": "true_false",
+          "question": "SSRIs are reliably effective as standalone treatment for weight restoration in acute, severely underweight Anorexia Nervosa.",
+          "answer": "False",
+          "explanation": "In acute severe AN, malnutrition-related neurobiology may blunt antidepressant benefit. Nutritional rehabilitation and structured psychotherapy are first-line for weight restoration; SSRIs may be considered later for comorbid mood/anxiety symptoms after partial weight restoration.",
+          "difficulty": "medium",
+          "board_topic": "AN Treatment Principles"
         }
       ]
     }
