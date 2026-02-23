@@ -9,7 +9,7 @@ Usage:
     python generate_quiz_pptx.py
     python generate_quiz_pptx.py --category "Pharmacotherapy"
     python generate_quiz_pptx.py --output my_quiz.pptx
-    python generate_quiz_pptx.py --format jeopardy
+    python generate_quiz_pptx.py --format lightning_round
     python generate_quiz_pptx.py --format audience_response
 
 Requirements:
@@ -18,7 +18,6 @@ Requirements:
 
 import argparse
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -47,6 +46,35 @@ QUIZ_BANK_PATH = Path(__file__).parent / "questions" / "quiz_bank.json"
 def _load_quiz_bank(path: Path) -> dict:
     with open(path, "r", encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def _get_filtered_categories(quiz_bank: dict, category_filter: str = None) -> list:
+    """Return categories filtered by optional case-insensitive name substring."""
+    categories = quiz_bank.get("categories", [])
+    if not category_filter:
+        return categories
+
+    filtered = [
+        category for category in categories
+        if category_filter.lower() in category.get("name", "").lower()
+    ]
+    return filtered
+
+
+def _place_new_slides(prs: Presentation, original_slide_count: int, insert_position: str):
+    """Move newly-added slides to requested position relative to template slides."""
+    if insert_position != "start":
+        return
+
+    slide_id_list = prs.slides._sldIdLst
+    new_slide_ids = list(slide_id_list)[original_slide_count:]
+    if not new_slide_ids:
+        return
+
+    for slide_id in new_slide_ids:
+        slide_id_list.remove(slide_id)
+    for idx, slide_id in enumerate(new_slide_ids):
+        slide_id_list.insert(idx, slide_id)
 
 
 def _set_slide_background(slide, colour: RGBColor):
@@ -168,6 +196,15 @@ def add_instructions_slide(prs: Presentation, format_name: str):
                 "Export poll results to track resident performance over time.",
             ]
         ),
+        "lightning_round": (
+            "Lightning Round Team Challenge",
+            [
+                "Split residents into teams and rotate turns by question.",
+                "Set a strict 20-30 second answer timer for each team.",
+                "Award points for correct first attempts; optional bonus for explanations.",
+                "Use the score tracker slide to keep cumulative team totals.",
+            ]
+        ),
     }
     title, bullets = instructions.get(format_name, instructions["standard"])
 
@@ -188,6 +225,28 @@ def add_instructions_slide(prs: Presentation, format_name: str):
                       Inches(0.7), Inches(1.4) + i * Inches(0.85),
                       W - Inches(1.2), Inches(0.75),
                       font_size=18, color=NAVY, align=PP_ALIGN.LEFT)
+
+    return slide
+
+
+def add_notice_slide(prs: Presentation, title: str, message: str):
+    """Add a simple informational slide for non-fatal generation notices."""
+    slide_layout = prs.slide_layouts[6]
+    slide = prs.slides.add_slide(slide_layout)
+    _set_slide_background(slide, LIGHT_GREY)
+
+    W = prs.slide_width
+    H = prs.slide_height
+
+    _add_rect(slide, 0, 0, W, Inches(1.05), NAVY)
+    _add_text_box(slide, title,
+                  Inches(0.3), Inches(0.1), W - Inches(0.6), Inches(0.8),
+                  font_size=28, bold=True, color=WHITE, align=PP_ALIGN.LEFT)
+
+    _add_rect(slide, Inches(0.35), Inches(1.5), W - Inches(0.7), H - Inches(2.1), WHITE)
+    _add_text_box(slide, message,
+                  Inches(0.55), Inches(1.75), W - Inches(1.1), H - Inches(2.6),
+                  font_size=20, bold=False, color=NAVY, align=PP_ALIGN.LEFT)
 
     return slide
 
@@ -424,6 +483,15 @@ def add_jeopardy_board(prs: Presentation, categories: list):
 
     points = [100, 200, 300, 400, 500]
     n_cats = min(len(categories), 5)
+
+    if n_cats == 0:
+        _add_text_box(slide,
+                      "No categories available for Jeopardy board.\n"
+                      "Try a different --category filter or remove it.",
+                      Inches(1.0), Inches(2.2), W - Inches(2.0), Inches(2.0),
+                      font_size=24, bold=True, color=WHITE, align=PP_ALIGN.CENTER)
+        return slide
+
     col_w = (W - Inches(0.4)) / n_cats
     row_h = (H - Inches(0.85)) / (len(points) + 1)
 
@@ -488,6 +556,37 @@ def add_score_tracker(prs: Presentation, n_teams: int = 4):
     return slide
 
 
+def add_lightning_round_slide(prs: Presentation):
+    """Adds a slide with rapid-fire team challenge rules."""
+    slide_layout = prs.slide_layouts[6]
+    slide = prs.slides.add_slide(slide_layout)
+    _set_slide_background(slide, NAVY)
+
+    W = prs.slide_width
+
+    _add_text_box(slide, "LIGHTNING ROUND",
+                  Inches(0.3), Inches(0.12), W - Inches(0.6), Inches(0.8),
+                  font_size=36, bold=True, color=GOLD, align=PP_ALIGN.CENTER)
+
+    rules = [
+        "1) Teams alternate question turns.",
+        "2) 20-30 seconds to lock answer.",
+        "3) +1 point for correct answer, 0 for incorrect.",
+        "4) Optional +1 bonus for concise rationale.",
+    ]
+    for idx, rule in enumerate(rules):
+        _add_text_box(slide, rule,
+                      Inches(1.0), Inches(1.6) + idx * Inches(0.9),
+                      W - Inches(2.0), Inches(0.65),
+                      font_size=24, bold=True, color=WHITE, align=PP_ALIGN.LEFT)
+
+    _add_text_box(slide, "Tip: Keep pace brisk and debrief after every 3-5 questions.",
+                  Inches(0.8), Inches(5.9), W - Inches(1.6), Inches(0.6),
+                  font_size=16, bold=False, color=LIGHT_GREY, align=PP_ALIGN.CENTER)
+
+    return slide
+
+
 def add_key_facts_slide(prs: Presentation, facts: list, title: str = "High-Yield Board Facts"):
     """Summary slide with bullet-point key facts."""
     slide_layout = prs.slide_layouts[6]
@@ -516,7 +615,9 @@ def add_key_facts_slide(prs: Presentation, facts: list, title: str = "High-Yield
 # ---------------------------------------------------------------------------
 
 def build_presentation(quiz_bank: dict, category_filter: str = None,
-                        fmt: str = "standard", output_path: str = None) -> str:
+                        fmt: str = "standard", output_path: str = None,
+                        template_path: str = None,
+                        insert_position: str = "end") -> str:
     """
     Build the full quiz PowerPoint presentation.
 
@@ -524,12 +625,19 @@ def build_presentation(quiz_bank: dict, category_filter: str = None,
     ----------
     quiz_bank       : loaded JSON quiz bank
     category_filter : optional category name substring to limit questions
-    fmt             : 'standard' | 'jeopardy' | 'audience_response'
+    fmt             : 'standard' | 'lightning_round' | 'audience_response' | 'jeopardy'
     output_path     : output .pptx file path (default: eating_disorders_quiz.pptx)
+    template_path   : optional existing .pptx to append quiz slides to
+    insert_position : 'end' (default) or 'start' when using template
     """
-    prs = Presentation()
-    prs.slide_width = Inches(13.33)
-    prs.slide_height = Inches(7.5)
+    if template_path:
+        prs = Presentation(template_path)
+    else:
+        prs = Presentation()
+        prs.slide_width = Inches(13.33)
+        prs.slide_height = Inches(7.5)
+
+    original_slide_count = len(prs.slides)
 
     metadata = quiz_bank.get("metadata", {})
     output_path = output_path or "eating_disorders_quiz.pptx"
@@ -545,17 +653,24 @@ def build_presentation(quiz_bank: dict, category_filter: str = None,
     add_instructions_slide(prs, fmt)
 
     # ---- Jeopardy game board (jeopardy format only) -----------------------
-    categories = quiz_bank.get("categories", [])
-    if category_filter:
-        categories = [
-            c for c in categories
-            if category_filter.lower() in c["name"].lower()
-        ]
+    categories = _get_filtered_categories(quiz_bank, category_filter)
 
     if fmt == "jeopardy":
         cat_names = [c["name"] for c in categories][:5]
         add_jeopardy_board(prs, cat_names)
         add_score_tracker(prs)
+    elif fmt == "lightning_round":
+        add_lightning_round_slide(prs)
+        add_score_tracker(prs)
+
+    if category_filter and not categories:
+        add_notice_slide(
+            prs,
+            "No Matching Categories",
+            f"No categories matched filter: '{category_filter}'.\n\n"
+            "A deck was still generated with intro and high-yield summary slides.\n"
+            "Use --category with a broader value or run without filtering.",
+        )
 
     # ---- Question slides ---------------------------------------------------
     q_num = 0
@@ -592,8 +707,15 @@ def build_presentation(quiz_bank: dict, category_filter: str = None,
     add_key_facts_slide(prs, high_yield_facts[:7], "High-Yield Board Facts – Part 1")
     add_key_facts_slide(prs, high_yield_facts[7:], "High-Yield Board Facts – Part 2")
 
-    prs.save(output_path)
-    return output_path
+    if template_path:
+        _place_new_slides(prs, original_slide_count, insert_position)
+
+    output = Path(output_path)
+    if output.parent != Path("."):
+        output.parent.mkdir(parents=True, exist_ok=True)
+
+    prs.save(str(output))
+    return str(output)
 
 
 # ---------------------------------------------------------------------------
@@ -625,10 +747,10 @@ def main():
         dest="fmt",
         type=str,
         default="standard",
-        choices=["standard", "jeopardy", "audience_response"],
+        choices=["standard", "lightning_round", "audience_response", "jeopardy"],
         help=(
             "Quiz format: 'standard' (Q→answer pairs), "
-            "'jeopardy' (game board + scoring), "
+            "'lightning_round' (timed team challenge), "
             "'audience_response' (live-vote prompts). "
             "Default: standard"
         ),
@@ -639,6 +761,25 @@ def main():
         default=str(QUIZ_BANK_PATH),
         help="Path to quiz bank JSON file (default: questions/quiz_bank.json)",
     )
+    parser.add_argument(
+        "--template",
+        type=str,
+        default=None,
+        help=(
+            "Optional existing .pptx to append quiz slides into. "
+            "If omitted, a new presentation is created."
+        ),
+    )
+    parser.add_argument(
+        "--insert-position",
+        type=str,
+        default="end",
+        choices=["start", "end"],
+        help=(
+            "When using --template, place generated quiz slides at the 'start' "
+            "or 'end' of the deck (default: end)."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -647,15 +788,36 @@ def main():
         print(f"ERROR: Quiz bank not found at {bank_path}", file=sys.stderr)
         sys.exit(1)
 
+    template_path = None
+    if args.template:
+        template_candidate = Path(args.template)
+        if not template_candidate.exists():
+            print(f"ERROR: Template PowerPoint not found at {template_candidate}", file=sys.stderr)
+            sys.exit(1)
+        if template_candidate.suffix.lower() != ".pptx":
+            print(
+                f"ERROR: Template must be a .pptx file (got: {template_candidate.suffix})",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        template_path = str(template_candidate)
+
     print(f"Loading quiz bank from: {bank_path}")
     quiz_bank = _load_quiz_bank(bank_path)
 
     print(f"Building presentation  [format={args.fmt}] …")
+    if template_path:
+        print(
+            "Using existing template: "
+            f"{template_path}  [insert_position={args.insert_position}]"
+        )
     output = build_presentation(
         quiz_bank,
         category_filter=args.category,
         fmt=args.fmt,
         output_path=args.output,
+        template_path=template_path,
+        insert_position=args.insert_position,
     )
 
     print(f"✅  Saved: {output}")
