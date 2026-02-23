@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: eating-disorders-quiz
+    env: docker
+    plan: free
+    autoDeploy: true

@@ -1,0 +1,818 @@
+{
+  "metadata": {
+    "title": "Eating Disorders – Psychiatry Board Review Quiz Bank",
+    "audience": "Psychiatry Residents",
+    "source_reference": "DSM-5-TR, APA Practice Guidelines, ABPN Board Examination Content Specifications",
+    "last_updated": "2026"
+  },
+  "categories": [
+    {
+      "name": "DSM-5 Diagnostic Criteria",
+      "questions": [
+        {
+          "id": "DSM-001",
+          "type": "multiple_choice",
+          "question": "According to DSM-5, which of the following is NOT a required criterion for Anorexia Nervosa?",
+          "choices": {
+            "A": "Restriction of energy intake leading to significantly low body weight",
+            "B": "Intense fear of gaining weight or persistent behavior that interferes with weight gain",
+            "C": "Recurrent compensatory behaviors such as self-induced vomiting",
+            "D": "Disturbance in the way one's body weight or shape is experienced"
+          },
+          "answer": "C",
+          "explanation": "Recurrent compensatory behaviors (vomiting, laxative use, etc.) are a criterion for Bulimia Nervosa, NOT Anorexia Nervosa. The three DSM-5 criteria for AN are: (1) restriction leading to low body weight, (2) intense fear of weight gain, and (3) body image disturbance/lack of recognition of the seriousness of low weight.",
+          "difficulty": "medium",
+          "board_topic": "Diagnostic Criteria – AN"
+        },
+        {
+          "id": "DSM-002",
+          "type": "multiple_choice",
+          "question": "A 19-year-old woman has a BMI of 16.5, fears gaining weight, and perceives herself as overweight despite her low weight. Her menstrual periods have stopped. Which DSM-5 specifier best describes her subtype of Anorexia Nervosa?",
+          "choices": {
+            "A": "With purging behaviors",
+            "B": "Restricting type",
+            "C": "Binge-eating/purging type",
+            "D": "Atypical type"
+          },
+          "answer": "B",
+          "explanation": "DSM-5 specifies two subtypes of AN: (1) Restricting type – weight loss achieved primarily by dieting, fasting, or excessive exercise; and (2) Binge-eating/purging type – recurrent episodes of binge eating or purging during the past 3 months. Note: amenorrhea was removed as a required criterion in DSM-5.",
+          "difficulty": "easy",
+          "board_topic": "AN Subtypes"
+        },
+        {
+          "id": "DSM-003",
+          "type": "multiple_choice",
+          "question": "For a diagnosis of Bulimia Nervosa (BN), DSM-5 requires binge eating and inappropriate compensatory behaviors to occur, on average, at least:",
+          "choices": {
+            "A": "Once a week for 3 months",
+            "B": "Twice a week for 3 months",
+            "C": "Once a week for 6 months",
+            "D": "Three times a week for 1 month"
+          },
+          "answer": "A",
+          "explanation": "DSM-5 changed the frequency threshold from DSM-IV (twice a week) to ONCE a week for at least 3 months. This is a commonly tested change on board exams.",
+          "difficulty": "medium",
+          "board_topic": "Diagnostic Criteria – BN"
+        },
+        {
+          "id": "DSM-004",
+          "type": "multiple_choice",
+          "question": "Which of the following BEST distinguishes Binge Eating Disorder (BED) from Bulimia Nervosa (BN)?",
+          "choices": {
+            "A": "BED requires a larger quantity of food consumed per episode",
+            "B": "BED is not associated with a sense of loss of control",
+            "C": "BED lacks recurrent inappropriate compensatory behaviors",
+            "D": "BED only occurs in individuals who are overweight or obese"
+          },
+          "answer": "C",
+          "explanation": "The key distinction is that BED does NOT involve recurrent inappropriate compensatory behaviors (e.g., purging, fasting, excessive exercise) to counteract the binge. BED can occur at any weight, and the sense of loss of control IS required in BED.",
+          "difficulty": "easy",
+          "board_topic": "BED vs BN"
+        },
+        {
+          "id": "DSM-005",
+          "type": "multiple_choice",
+          "question": "A 7-year-old boy persistently eats dirt and clay for more than 1 month. He has no nutritional deficiency. His eating behavior is not culturally sanctioned. What is the most likely DSM-5 diagnosis?",
+          "choices": {
+            "A": "Rumination Disorder",
+            "B": "ARFID",
+            "C": "Pica",
+            "D": "Binge Eating Disorder"
+          },
+          "answer": "C",
+          "explanation": "Pica is the persistent eating of non-nutritive, non-food substances for at least 1 month. It is inappropriate to the developmental level (age ≥2), not culturally sanctioned. It can be diagnosed alongside other conditions (ASD, intellectual disability, pregnancy).",
+          "difficulty": "easy",
+          "board_topic": "Pica"
+        },
+        {
+          "id": "DSM-006",
+          "type": "multiple_choice",
+          "question": "ARFID (Avoidant/Restrictive Food Intake Disorder) differs from Anorexia Nervosa primarily because ARFID:",
+          "choices": {
+            "A": "Does not result in significant weight loss",
+            "B": "Is exclusively diagnosed in children under age 12",
+            "C": "Does not involve disturbance in how body weight or shape is experienced",
+            "D": "Always involves a fear of choking or vomiting"
+          },
+          "answer": "C",
+          "explanation": "ARFID involves restricted food intake based on sensory characteristics, lack of interest in eating, or fear of aversive consequences (choking, vomiting), but crucially does NOT involve the body image disturbance or fear of weight gain that characterize AN. ARFID can occur at any age and can cause significant weight loss.",
+          "difficulty": "medium",
+          "board_topic": "ARFID vs AN"
+        },
+        {
+          "id": "DSM-007",
+          "type": "multiple_choice",
+          "question": "DSM-5 defines 'binge eating' as eating, in a discrete period of time, an amount of food that is definitely larger than most people would eat under similar circumstances, along with:",
+          "choices": {
+            "A": "A subsequent period of fasting lasting at least 24 hours",
+            "B": "A sense of loss of control over eating during the episode",
+            "C": "Purging behavior within 1 hour of eating",
+            "D": "Distress rated ≥7 on a 10-point scale"
+          },
+          "answer": "B",
+          "explanation": "A binge episode has two components: (1) eating a large amount in a discrete period and (2) a sense of LOSS OF CONTROL during the episode. The sense of loss of control is central to the diagnosis and differentiates it from simple overeating.",
+          "difficulty": "easy",
+          "board_topic": "Binge Eating Definition"
+        },
+        {
+          "id": "DSM-008",
+          "type": "multiple_choice",
+          "question": "Which of the following is an 'Other Specified Feeding or Eating Disorder' (OSFED) category in DSM-5?",
+          "choices": {
+            "A": "Binge Eating Disorder with a BMI > 40",
+            "B": "Atypical Anorexia Nervosa (normal or above-normal weight but meets all other AN criteria)",
+            "C": "Bulimia Nervosa in males",
+            "D": "Anorexia Nervosa with binge/purge subtype"
+          },
+          "answer": "B",
+          "explanation": "OSFED includes: (1) Atypical AN (normal/high weight but meets all other AN criteria), (2) BN of low frequency/duration, (3) BED of low frequency/duration, (4) Purging disorder (purging without binge eating), and (5) Night eating syndrome. Atypical AN is important clinically—these patients may be medically unstable despite not appearing underweight.",
+          "difficulty": "hard",
+          "board_topic": "OSFED"
+        },
+        {
+          "id": "DSM-009",
+          "type": "multiple_choice",
+          "question": "In DSM-5-TR, severity specifiers for Anorexia Nervosa in adults are primarily based on:",
+          "choices": {
+            "A": "Frequency of binge episodes per week",
+            "B": "Degree of body image distortion",
+            "C": "Body mass index (BMI)",
+            "D": "Duration of illness"
+          },
+          "answer": "C",
+          "explanation": "DSM-5-TR AN severity is based on BMI in adults (Mild ≥17, Moderate 16-16.99, Severe 15-15.99, Extreme <15). Clinical judgment can override these cutoffs if functional impairment or medical risk is greater than BMI alone suggests.",
+          "difficulty": "medium",
+          "board_topic": "AN Severity Specifiers"
+        },
+        {
+          "id": "DSM-010",
+          "type": "multiple_choice",
+          "question": "DSM-5-TR severity specifiers for Bulimia Nervosa are determined by:",
+          "choices": {
+            "A": "Current BMI",
+            "B": "Frequency of inappropriate compensatory behaviors",
+            "C": "Number of objective binge episodes only",
+            "D": "Presence or absence of electrolyte abnormalities"
+          },
+          "answer": "B",
+          "explanation": "BN severity is based on the average number of inappropriate compensatory behaviors per week: Mild 1-3, Moderate 4-7, Severe 8-13, Extreme 14+. This is a high-yield DSM-5-TR distinction from AN severity, which is BMI-based.",
+          "difficulty": "medium",
+          "board_topic": "BN Severity Specifiers"
+        }
+      ]
+    },
+    {
+      "name": "Epidemiology & Risk Factors",
+      "questions": [
+        {
+          "id": "EPI-001",
+          "type": "multiple_choice",
+          "question": "Which eating disorder has the HIGHEST mortality rate among all psychiatric disorders?",
+          "choices": {
+            "A": "Bulimia Nervosa",
+            "B": "Binge Eating Disorder",
+            "C": "Anorexia Nervosa",
+            "D": "ARFID"
+          },
+          "answer": "C",
+          "explanation": "Anorexia Nervosa has the highest mortality rate of any psychiatric disorder, with a standardized mortality ratio (SMR) of approximately 5–10. Deaths occur from medical complications (cardiac arrhythmias, electrolyte imbalances) and suicide. The crude mortality rate is approximately 5–10% per decade.",
+          "difficulty": "easy",
+          "board_topic": "Mortality – AN"
+        },
+        {
+          "id": "EPI-002",
+          "type": "multiple_choice",
+          "question": "The lifetime prevalence of Anorexia Nervosa in women is approximately:",
+          "choices": {
+            "A": "0.1–0.3%",
+            "B": "0.9–2%",
+            "C": "4–5%",
+            "D": "8–10%"
+          },
+          "answer": "B",
+          "explanation": "The lifetime prevalence of AN in women is approximately 0.9–2%. BN has a lifetime prevalence of approximately 1.5%, and BED approximately 3.5% in women. These are important reference points for board questions on epidemiology.",
+          "difficulty": "medium",
+          "board_topic": "Prevalence – AN"
+        },
+        {
+          "id": "EPI-003",
+          "type": "multiple_choice",
+          "question": "Which of the following statements about eating disorders in males is MOST accurate?",
+          "choices": {
+            "A": "Eating disorders are exceedingly rare in males, with fewer than 100 cases reported annually",
+            "B": "Males account for approximately 25–40% of individuals with Binge Eating Disorder",
+            "C": "Anorexia Nervosa does not occur in males",
+            "D": "Males with eating disorders are more likely to seek treatment than females"
+          },
+          "answer": "B",
+          "explanation": "While AN and BN are predominantly female (female-to-male ratio ~10:1), BED has a more balanced sex ratio, with males comprising approximately 25–40% of BED cases. Males are frequently underdiagnosed due to clinical bias and different presentations (e.g., muscle dysmorphia).",
+          "difficulty": "medium",
+          "board_topic": "Eating Disorders in Males"
+        },
+        {
+          "id": "EPI-004",
+          "type": "multiple_choice",
+          "question": "Which of the following is the STRONGEST evidence-based risk factor for developing Anorexia Nervosa?",
+          "choices": {
+            "A": "Low socioeconomic status",
+            "B": "First-degree relative with AN (genetic/familial risk)",
+            "C": "Childhood trauma and PTSD",
+            "D": "Obesity in early childhood"
+          },
+          "answer": "B",
+          "explanation": "Twin studies demonstrate heritability of AN at approximately 50–80%. Having a first-degree relative with AN increases risk substantially. Other well-established risk factors include perfectionism, negative emotionality, OCD traits, early onset puberty in girls, and exposure to thin-ideal media, but genetic/familial risk has the strongest evidence.",
+          "difficulty": "medium",
+          "board_topic": "Risk Factors – AN"
+        }
+      ]
+    },
+    {
+      "name": "Medical Complications & Laboratory Findings",
+      "questions": [
+        {
+          "id": "MED-001",
+          "type": "multiple_choice",
+          "question": "A 22-year-old woman with known Bulimia Nervosa presents with muscle cramps, weakness, and palpitations. Which electrolyte abnormality is MOST commonly associated with purging behavior?",
+          "choices": {
+            "A": "Hypernatremia",
+            "B": "Hypokalemic hypochloremic metabolic alkalosis",
+            "C": "Hyperkalemia with metabolic acidosis",
+            "D": "Hyponatremia with euvolemia"
+          },
+          "answer": "B",
+          "explanation": "Self-induced vomiting causes loss of hydrochloric acid (HCl) from the stomach, leading to: hypokalemia (K+ lost in vomit and compensatory renal excretion), hypochloremia, and metabolic alkalosis. Elevated bicarbonate (>30 mEq/L) is a classic lab finding in BN with purging. Serum amylase may also be elevated.",
+          "difficulty": "medium",
+          "board_topic": "Electrolytes – BN Purging"
+        },
+        {
+          "id": "MED-002",
+          "type": "multiple_choice",
+          "question": "Which cardiovascular finding is a recognized complication of severe Anorexia Nervosa and constitutes a medical emergency?",
+          "choices": {
+            "A": "Atrial fibrillation",
+            "B": "QTc prolongation",
+            "C": "Right bundle branch block",
+            "D": "Mitral valve stenosis"
+          },
+          "answer": "B",
+          "explanation": "QTc prolongation occurs in AN due to malnutrition and electrolyte abnormalities (hypokalemia, hypomagnesemia). QTc >500 ms significantly increases the risk of life-threatening arrhythmias (torsades de pointes, ventricular fibrillation). An ECG is recommended in any patient with severe AN. Bradycardia is the most common cardiac finding.",
+          "difficulty": "medium",
+          "board_topic": "Cardiac Complications – AN"
+        },
+        {
+          "id": "MED-003",
+          "type": "multiple_choice",
+          "question": "What is 'Russell's Sign,' and in which eating disorder is it found?",
+          "choices": {
+            "A": "Lanugo hair on the arms and back, found in Anorexia Nervosa",
+            "B": "Calluses or abrasions on the dorsum of the hand from repetitive self-induced vomiting, found in Bulimia Nervosa",
+            "C": "Bilateral parotid gland enlargement, found in Bulimia Nervosa",
+            "D": "Peripheral edema from refeeding, found in Anorexia Nervosa"
+          },
+          "answer": "B",
+          "explanation": "Russell's Sign is calluses, scars, or abrasions on the knuckles/dorsum of the dominant hand caused by repeated contact with the upper incisors during self-induced vomiting. It is pathognomonic for BN or the binge-purge subtype of AN. (Note: parotid enlargement is also found in BN but is a separate finding called 'chipmunk cheeks'.)",
+          "difficulty": "easy",
+          "board_topic": "Physical Exam – BN"
+        },
+        {
+          "id": "MED-004",
+          "type": "multiple_choice",
+          "question": "Refeeding syndrome is a potentially fatal complication of nutritional rehabilitation. Its hallmark is:",
+          "choices": {
+            "A": "Hyperphosphatemia leading to calcium precipitation",
+            "B": "Hypophosphatemia leading to cardiac, respiratory, and neurological complications",
+            "C": "Hyperkalemia leading to cardiac arrhythmia",
+            "D": "Hyponatremia causing cerebral edema"
+          },
+          "answer": "B",
+          "explanation": "Refeeding syndrome occurs when malnourished patients are rapidly refed. Carbohydrate load causes insulin surge, driving phosphate into cells → profound hypophosphatemia. This impairs ATP production, causing: cardiac failure, respiratory failure, rhabdomyolysis, seizures, and death. Phosphate levels should be closely monitored during refeeding, and refeeding should begin SLOWLY.",
+          "difficulty": "hard",
+          "board_topic": "Refeeding Syndrome"
+        },
+        {
+          "id": "MED-005",
+          "type": "multiple_choice",
+          "question": "Which of the following bone-related complications is seen in patients with chronic Anorexia Nervosa?",
+          "choices": {
+            "A": "Osteosclerosis",
+            "B": "Osteopenia/osteoporosis due to hypoestrogenemia and low IGF-1",
+            "C": "Paget's disease",
+            "D": "Hyperparathyroidism-related bone resorption"
+          },
+          "answer": "B",
+          "explanation": "Osteoporosis is a serious and often irreversible complication of AN. It results from: low estrogen (hypothalamic amenorrhea), elevated cortisol, malnutrition, and decreased IGF-1. Unlike postmenopausal osteoporosis, bisphosphonates are NOT routinely recommended in AN (no proven benefit). Weight restoration and estrogen replacement may partially reverse bone loss.",
+          "difficulty": "medium",
+          "board_topic": "Bone Complications – AN"
+        },
+        {
+          "id": "MED-006",
+          "type": "multiple_choice",
+          "question": "A 17-year-old girl with AN restricting type presents with lab results showing a slightly elevated BUN, low estrogen, and mild leukopenia. Her ECG shows a heart rate of 42 bpm. Which lab finding would be MOST immediately concerning?",
+          "choices": {
+            "A": "Potassium of 3.4 mEq/L",
+            "B": "Sodium of 136 mEq/L",
+            "C": "Phosphorus of 1.2 mg/dL (normal 2.5–4.5)",
+            "D": "Glucose of 70 mg/dL"
+          },
+          "answer": "C",
+          "explanation": "Severe hypophosphatemia (< 2.0 mg/dL) is immediately life-threatening, particularly during refeeding, as it can precipitate refeeding syndrome. In severe AN, phosphate should be monitored closely. The bradycardia (HR 42) is concerning but is common in AN due to vagal tone. Mild hypokalemia (3.4) and mild hypoglycemia (70) are less immediately dangerous.",
+          "difficulty": "hard",
+          "board_topic": "Lab Interpretation – AN"
+        },
+        {
+          "id": "MED-007",
+          "type": "multiple_choice",
+          "question": "Which dental finding is most commonly associated with Bulimia Nervosa?",
+          "choices": {
+            "A": "Dental abscesses from poor hygiene",
+            "B": "Perimylolysis (erosion of tooth enamel on lingual surface of teeth)",
+            "C": "Hyperdontia (extra teeth)",
+            "D": "Dental fluorosis"
+          },
+          "answer": "B",
+          "explanation": "Perimylolysis is erosion of the lingual (tongue-side) surface of the upper teeth from repeated exposure to gastric acid during vomiting. It is often the first physical sign identified by dentists. Patients should be counseled to rinse with sodium bicarbonate and NOT brush immediately after vomiting (brushing spreads acid).",
+          "difficulty": "easy",
+          "board_topic": "Dental Complications – BN"
+        },
+        {
+          "id": "MED-008",
+          "type": "multiple_choice",
+          "question": "A patient with chronic self-induced vomiting abruptly stops purging and develops peripheral edema and rapid weight gain over several days. What is the most likely mechanism?",
+          "choices": {
+            "A": "Acute nephrotic syndrome",
+            "B": "Pseudo-Bartter physiology with secondary hyperaldosteronism",
+            "C": "Congestive heart failure from myocarditis",
+            "D": "SIADH due to SSRI use"
+          },
+          "answer": "B",
+          "explanation": "Chronic purging activates RAAS and leads to secondary hyperaldosteronism (pseudo-Bartter state). When purging stops, persistent aldosterone activity promotes sodium/water retention and edema. This is common in early BN recovery and can be managed with reassurance and careful fluid/sodium guidance; some patients may need short-term mineralocorticoid antagonism.",
+          "difficulty": "hard",
+          "board_topic": "Pseudo-Bartter Syndrome"
+        },
+        {
+          "id": "MED-009",
+          "type": "multiple_choice",
+          "question": "Which thyroid pattern is most typical in severe malnutrition from Anorexia Nervosa?",
+          "choices": {
+            "A": "High T3, high T4, low TSH",
+            "B": "Low T3 with normal/low-normal T4 and normal/low-normal TSH",
+            "C": "High TSH with high thyroid peroxidase antibodies",
+            "D": "Isolated high reverse T3 suppression due to hypermetabolism"
+          },
+          "answer": "B",
+          "explanation": "Severe AN is associated with euthyroid sick physiology: low T3, often normal to low-normal T4, and non-elevated TSH. This reflects metabolic adaptation to starvation rather than primary thyroid disease. Thyroid hormone replacement is generally not indicated unless there is separate true hypothyroidism.",
+          "difficulty": "medium",
+          "board_topic": "Endocrine Adaptation – AN"
+        }
+      ]
+    },
+    {
+      "name": "Treatment – Psychotherapy",
+      "questions": [
+        {
+          "id": "TX-001",
+          "type": "multiple_choice",
+          "question": "Which psychotherapy has the STRONGEST evidence base and is considered FIRST-LINE for Bulimia Nervosa in adults?",
+          "choices": {
+            "A": "Dialectical Behavior Therapy (DBT)",
+            "B": "Cognitive Behavioral Therapy (CBT-E)",
+            "C": "Interpersonal Therapy (IPT)",
+            "D": "Acceptance and Commitment Therapy (ACT)"
+          },
+          "answer": "B",
+          "explanation": "Enhanced Cognitive Behavioral Therapy (CBT-E) developed by Christopher Fairburn is the gold-standard first-line treatment for BN. It targets the 'cognitive' maintenance of BN—overvaluation of shape/weight—through behavioral experiments, dietary normalization, and cognitive restructuring. IPT is also effective but takes longer to work. DBT is used for BN with emotion dysregulation.",
+          "difficulty": "easy",
+          "board_topic": "Treatment – BN Psychotherapy"
+        },
+        {
+          "id": "TX-002",
+          "type": "multiple_choice",
+          "question": "Family-Based Treatment (FBT), also known as the 'Maudsley Approach,' is considered the first-line psychotherapy for:",
+          "choices": {
+            "A": "Adults with BN over age 25",
+            "B": "Adolescents with AN",
+            "C": "Adults with BED",
+            "D": "Children under 8 with Pica"
+          },
+          "answer": "B",
+          "explanation": "Family-Based Treatment (FBT) is the gold-standard treatment for adolescents with AN. It proceeds in three phases: (1) parents take control of refeeding, (2) control returned to adolescent as weight restores, (3) healthy adolescent development addressed. It has the strongest evidence base for this age group. CBT is preferred for adult AN.",
+          "difficulty": "medium",
+          "board_topic": "FBT – Adolescent AN"
+        },
+        {
+          "id": "TX-003",
+          "type": "multiple_choice",
+          "question": "Which psychotherapy is considered first-line for Binge Eating Disorder?",
+          "choices": {
+            "A": "Psychodynamic psychotherapy",
+            "B": "CBT-E or guided self-help CBT",
+            "C": "Supportive therapy",
+            "D": "Exposure and response prevention (ERP)"
+          },
+          "answer": "B",
+          "explanation": "CBT-E (or guided self-help CBT) is first-line for BED, targeting the overvaluation of shape/weight, binge triggers, and dietary chaos. IPT and DBT are also effective second-line options. Unlike BN, pharmacotherapy alone (e.g., lisdexamfetamine) can also be used but psychotherapy remains first-line.",
+          "difficulty": "medium",
+          "board_topic": "Treatment – BED Psychotherapy"
+        },
+        {
+          "id": "TX-004",
+          "type": "multiple_choice",
+          "question": "In CBT-E for bulimia nervosa, what is the PRIMARY cognitive target of treatment?",
+          "choices": {
+            "A": "Depressive cognitions and hopelessness",
+            "B": "Overvaluation of eating, shape, and weight",
+            "C": "Paranoid ideation about food contamination",
+            "D": "Impaired theory of mind"
+          },
+          "answer": "B",
+          "explanation": "The core psychopathology in BN (and AN) according to the cognitive-behavioral model is the OVERVALUATION of eating, shape, and weight—i.e., judging self-worth almost exclusively in terms of one's ability to control eating, shape, and weight. CBT-E directly targets this maintaining mechanism.",
+          "difficulty": "hard",
+          "board_topic": "CBT-E Mechanism"
+        }
+      ]
+    },
+    {
+      "name": "Treatment – Pharmacotherapy",
+      "questions": [
+        {
+          "id": "PHARM-001",
+          "type": "multiple_choice",
+          "question": "Which medication is FDA-approved for Binge Eating Disorder?",
+          "choices": {
+            "A": "Fluoxetine",
+            "B": "Lisdexamfetamine (Vyvanse)",
+            "C": "Topiramate",
+            "D": "Naltrexone"
+          },
+          "answer": "B",
+          "explanation": "Lisdexamfetamine (Vyvanse) is the ONLY FDA-approved medication for moderate-to-severe Binge Eating Disorder in adults (approved 2015). It is a CNS stimulant (prodrug of dextroamphetamine). It is contraindicated in patients with cardiovascular disease and carries a risk of dependence. Fluoxetine is FDA-approved for BN, not BED.",
+          "difficulty": "easy",
+          "board_topic": "FDA-Approved Tx – BED"
+        },
+        {
+          "id": "PHARM-002",
+          "type": "multiple_choice",
+          "question": "Which medication is FDA-approved for Bulimia Nervosa?",
+          "choices": {
+            "A": "Sertraline",
+            "B": "Fluoxetine (Prozac) at 60 mg/day",
+            "C": "Bupropion",
+            "D": "Olanzapine"
+          },
+          "answer": "B",
+          "explanation": "Fluoxetine at 60 mg/day (higher than the typical antidepressant dose) is the ONLY FDA-approved medication for Bulimia Nervosa. Note: BUPROPION is CONTRAINDICATED in BN due to a significantly increased seizure risk in this population (electrolyte disturbances lower seizure threshold).",
+          "difficulty": "easy",
+          "board_topic": "FDA-Approved Tx – BN"
+        },
+        {
+          "id": "PHARM-003",
+          "type": "multiple_choice",
+          "question": "Bupropion is CONTRAINDICATED in which eating disorder and why?",
+          "choices": {
+            "A": "ARFID, because it suppresses appetite excessively",
+            "B": "Anorexia Nervosa, because it causes excessive weight loss",
+            "C": "Bulimia Nervosa, because it significantly increases seizure risk in this population",
+            "D": "BED, because it causes cardiovascular events"
+          },
+          "answer": "C",
+          "explanation": "Bupropion lowers the seizure threshold and is contraindicated in BN (and purging AN). Patients with BN often have electrolyte abnormalities (hypokalemia, hypomagnesemia) from purging that further lower the seizure threshold, making the combination especially dangerous. This is a HIGH-YIELD board fact.",
+          "difficulty": "easy",
+          "board_topic": "Contraindicated Medications – BN"
+        },
+        {
+          "id": "PHARM-004",
+          "type": "multiple_choice",
+          "question": "Which medication has evidence for weight gain in Anorexia Nervosa and is sometimes used off-label?",
+          "choices": {
+            "A": "Aripiprazole",
+            "B": "Olanzapine",
+            "C": "Quetiapine",
+            "D": "Clozapine"
+          },
+          "answer": "B",
+          "explanation": "Olanzapine has the most evidence among antipsychotics for adjunctive use in AN. It promotes weight gain, reduces anxiety around eating, and may address obsessional thinking about food. However, no medication is FDA-approved for AN, and the evidence base remains limited. A 2018 NEJM RCT showed modest benefit over placebo.",
+          "difficulty": "medium",
+          "board_topic": "Pharmacotherapy – AN"
+        },
+        {
+          "id": "PHARM-005",
+          "type": "multiple_choice",
+          "question": "When initiating pharmacotherapy for a patient with Bulimia Nervosa, the clinician notes that the patient is also diagnosed with Major Depressive Disorder. What is the BEST first-line pharmacological choice?",
+          "choices": {
+            "A": "Bupropion, as it treats both conditions effectively",
+            "B": "Fluoxetine 60 mg/day, as it is FDA-approved for BN and also treats depression",
+            "C": "Tricyclic antidepressants, as they are highly effective for BN",
+            "D": "MAOIs, as they have the best evidence for comorbid eating disorders and depression"
+          },
+          "answer": "B",
+          "explanation": "Fluoxetine at 60 mg/day is the first-line medication for BN; it also treats comorbid MDD. Bupropion is contraindicated in BN due to seizure risk. TCAs and MAOIs have evidence for BN but adverse effect profiles make them second/third-line. The combination of CBT-E + fluoxetine is superior to either alone.",
+          "difficulty": "medium",
+          "board_topic": "Comorbid MDD + BN Treatment"
+        },
+        {
+          "id": "PHARM-006",
+          "type": "multiple_choice",
+          "question": "Which medication has evidence for reducing binge frequency in BED but requires counseling about cognitive slowing and paresthesias?",
+          "choices": {
+            "A": "Topiramate",
+            "B": "Lamotrigine",
+            "C": "Lithium",
+            "D": "Mirtazapine"
+          },
+          "answer": "A",
+          "explanation": "Topiramate has evidence for reducing binge frequency and can produce weight loss, but adverse effects include cognitive slowing, word-finding difficulty, paresthesias, nephrolithiasis risk, and teratogenicity concerns. It is not FDA-approved for BED, unlike lisdexamfetamine.",
+          "difficulty": "medium",
+          "board_topic": "Off-Label BED Pharmacotherapy"
+        },
+        {
+          "id": "PHARM-007",
+          "type": "multiple_choice",
+          "question": "Which statement about medication use in Anorexia Nervosa is MOST accurate?",
+          "choices": {
+            "A": "SSRIs are consistently effective for acute weight restoration in severely underweight AN",
+            "B": "No medication is FDA-approved for AN, and nutritional rehabilitation remains central",
+            "C": "Bupropion is preferred in AN due to activating properties",
+            "D": "Stimulants are first-line for AN with restricting subtype"
+          },
+          "answer": "B",
+          "explanation": "No medication is FDA-approved for AN. Nutritional rehabilitation and psychotherapy are first-line. SSRIs are often less effective in acute severe malnutrition, though they may be used for comorbid mood/anxiety symptoms after partial weight restoration. Bupropion is avoided in patients at increased seizure risk.",
+          "difficulty": "easy",
+          "board_topic": "AN Pharmacotherapy Principles"
+        }
+      ]
+    },
+    {
+      "name": "Hospitalization & Level of Care",
+      "questions": [
+        {
+          "id": "LOC-001",
+          "type": "multiple_choice",
+          "question": "Which of the following BEST indicates that a patient with Anorexia Nervosa requires inpatient medical hospitalization?",
+          "choices": {
+            "A": "BMI of 17.5 with refusal to gain weight",
+            "B": "Heart rate of 42 bpm, orthostatic hypotension, and potassium of 2.9 mEq/L",
+            "C": "Persistent restriction despite outpatient CBT for 6 months",
+            "D": "Body image disturbance without physical complications"
+          },
+          "answer": "B",
+          "explanation": "Medical hospitalization criteria for AN (per MARSIPAN / APA guidelines) include: HR <50 bpm, systolic BP <90 mmHg, orthostatic changes >20 mmHg, potassium <3.2 mEq/L, phosphate <2.0 mg/dL, glucose <60 mg/dL, or QTc >500 ms. The clinical picture in choice B (bradycardia + orthostasis + hypokalemia) meets medical hospitalization criteria.",
+          "difficulty": "medium",
+          "board_topic": "Hospitalization Criteria – AN"
+        },
+        {
+          "id": "LOC-002",
+          "type": "multiple_choice",
+          "question": "The STEP-wise levels of care for eating disorders from least to most intensive, in correct order, is:",
+          "choices": {
+            "A": "Outpatient → Intensive Outpatient (IOP) → Partial Hospitalization (PHP) → Residential → Inpatient",
+            "B": "Inpatient → Residential → Partial Hospitalization (PHP) → Intensive Outpatient (IOP) → Outpatient",
+            "C": "Intensive Outpatient (IOP) → Outpatient → Partial Hospitalization → Residential → Inpatient",
+            "D": "Residential → Outpatient → Intensive Outpatient (IOP) → Partial Hospitalization → Inpatient"
+          },
+          "answer": "A",
+          "explanation": "The correct stepped care model from least to most intensive: Outpatient (weekly sessions) → IOP (9+ hours/week) → PHP/Day treatment (20+ hours/week) → Residential (24-hour supervised care) → Inpatient (medical/psychiatric hospital). The ASAM/AEDRP HONE criteria guide level-of-care decisions.",
+          "difficulty": "medium",
+          "board_topic": "Levels of Care"
+        }
+      ]
+    },
+    {
+      "name": "Comorbidities & Special Populations",
+      "questions": [
+        {
+          "id": "CO-001",
+          "type": "multiple_choice",
+          "question": "Which psychiatric comorbidity has the HIGHEST prevalence in patients with Anorexia Nervosa?",
+          "choices": {
+            "A": "Schizophrenia",
+            "B": "Bipolar I Disorder",
+            "C": "Major Depressive Disorder / Anxiety Disorders",
+            "D": "PTSD"
+          },
+          "answer": "C",
+          "explanation": "Up to 50–75% of patients with AN have a comorbid mood or anxiety disorder, most commonly MDD, OCD, social anxiety disorder, and GAD. OCD and perfectionism are particularly linked to AN pathology. Schizophrenia can present with food refusal but is not the most common comorbidity.",
+          "difficulty": "easy",
+          "board_topic": "Comorbidities – AN"
+        },
+        {
+          "id": "CO-002",
+          "type": "multiple_choice",
+          "question": "A 24-year-old woman with Type 1 Diabetes presents with poor glycemic control despite adequate insulin dosing. She has an A1c of 11% and reports episodes of overeating. She admits to intentionally reducing her insulin doses to lose weight. What is this behavior called?",
+          "choices": {
+            "A": "Insulin resistance phenomenon",
+            "B": "Diabulimia (insulin restriction for weight control)",
+            "C": "Metabolic disordered eating",
+            "D": "Factitious disorder with metabolic presentation"
+          },
+          "answer": "B",
+          "explanation": "'Diabulimia' is the colloquial term for intentional insulin restriction for the purpose of weight loss in people with Type 1 Diabetes. It is a form of disordered eating unique to T1DM. It leads to chronic hyperglycemia, rapid-onset diabetic complications (retinopathy, nephropathy, neuropathy), and DKA. Recognition is critical for board purposes.",
+          "difficulty": "hard",
+          "board_topic": "Eating Disorders + Diabetes"
+        },
+        {
+          "id": "CO-003",
+          "type": "multiple_choice",
+          "question": "Which of the following eating disorders has the highest prevalence in males and is associated with the pursuit of muscularity rather than thinness?",
+          "choices": {
+            "A": "Anorexia Nervosa",
+            "B": "Muscle Dysmorphia (a form of Body Dysmorphic Disorder)",
+            "C": "Bulimia Nervosa",
+            "D": "Rumination Disorder"
+          },
+          "answer": "B",
+          "explanation": "Muscle Dysmorphia (classified under Body Dysmorphic Disorder in DSM-5) predominantly affects males and involves a preoccupation with being insufficiently muscular. It is associated with excessive exercise, use of anabolic steroids, and significant functional impairment. While not technically an eating disorder in DSM-5, it frequently appears on board questions in the context of male eating/body image pathology.",
+          "difficulty": "medium",
+          "board_topic": "Muscle Dysmorphia"
+        }
+      ]
+    },
+    {
+      "name": "Prognosis & Outcomes",
+      "questions": [
+        {
+          "id": "PROG-001",
+          "type": "multiple_choice",
+          "question": "Approximately what percentage of patients with Anorexia Nervosa achieve full recovery?",
+          "choices": {
+            "A": "Less than 10%",
+            "B": "Approximately 50%",
+            "C": "Over 85%",
+            "D": "Nearly 100% with adequate treatment"
+          },
+          "answer": "B",
+          "explanation": "Long-term outcome studies suggest approximately 50% of AN patients achieve full recovery, ~30% partially recover, and ~20% develop a chronic course. Earlier age of onset and shorter duration of illness before treatment are the best predictors of recovery. Males may have slightly better outcomes than females.",
+          "difficulty": "medium",
+          "board_topic": "Prognosis – AN"
+        },
+        {
+          "id": "PROG-002",
+          "type": "multiple_choice",
+          "question": "Which of the following is the BEST predictor of poor outcome in Anorexia Nervosa?",
+          "choices": {
+            "A": "Female sex",
+            "B": "Age of onset in adolescence",
+            "C": "Longer duration of illness before treatment",
+            "D": "Absence of comorbid depression"
+          },
+          "answer": "C",
+          "explanation": "Longer duration of illness (chronicity) before treatment is consistently associated with worse outcomes in AN. Other poor prognostic factors include: older age of onset, low minimum BMI, previous treatment failures, severe purging, comorbid personality disorders, and denial of illness. Earlier intervention is associated with better outcomes.",
+          "difficulty": "medium",
+          "board_topic": "Prognosis – Poor Predictors"
+        }
+      ]
+    },
+    {
+      "name": "Clinical Vignettes",
+      "questions": [
+        {
+          "id": "VIG-001",
+          "type": "case_vignette",
+          "clinical_stem": "An 18-year-old woman is brought by her parents for evaluation. Over the past year, she has lost 25 lbs and currently weighs 98 lbs at 5'5\" (BMI 16.3). She exercises 3 hours daily and refuses to eat more than 800 calories per day. She denies feeling thin, saying 'I still see fat when I look in the mirror.' Her periods stopped 4 months ago. Labs show mild leukopenia and low estradiol. ECG shows sinus bradycardia at 48 bpm.",
+          "question": "Which of the following is the MOST appropriate next step in management?",
+          "choices": {
+            "A": "Start fluoxetine 60 mg/day and schedule weekly CBT",
+            "B": "Admit to inpatient medical unit for cardiac monitoring and nutritional rehabilitation",
+            "C": "Refer to intensive outpatient eating disorder program",
+            "D": "Order a brain MRI to rule out hypothalamic tumor"
+          },
+          "answer": "B",
+          "explanation": "This patient has AN restricting type with MEDICAL INSTABILITY (bradycardia HR 48, amenorrhea, low BMI 16.3). Per APA guidelines, inpatient hospitalization is indicated for: HR <50 bpm, orthostatic hypotension, electrolyte disturbances, or rapid weight loss. She requires medical monitoring during refeeding (to prevent refeeding syndrome) and cardiac monitoring. Fluoxetine is not FDA-approved for AN and is minimally effective in underweight patients.",
+          "difficulty": "medium",
+          "board_topic": "AN Management – Inpatient Decision"
+        },
+        {
+          "id": "VIG-002",
+          "type": "case_vignette",
+          "clinical_stem": "A 21-year-old college student presents to student health complaining of fatigue. She appears to have a normal BMI of 22. Her dentist recently noted erosion of tooth enamel on the lingual surfaces of her upper teeth. She reports feeling 'out of control' with eating 2–3 times per week, after which she makes herself vomit. She is deeply ashamed and has not told anyone. She exercises daily and uses laxatives occasionally. Labs show potassium 3.0 mEq/L and elevated serum bicarbonate.",
+          "question": "What is the MOST likely diagnosis and BEST initial treatment approach?",
+          "choices": {
+            "A": "Anorexia Nervosa binge-purge type; inpatient hospitalization",
+            "B": "Bulimia Nervosa; CBT-E plus consideration of fluoxetine 60 mg/day",
+            "C": "Binge Eating Disorder; lisdexamfetamine",
+            "D": "Major Depressive Disorder with atypical features; start SSRI"
+          },
+          "answer": "B",
+          "explanation": "This patient has classic BN: normal weight, recurrent binge-purge cycles (≥1x/week), shame, compensatory behaviors (vomiting, laxatives, exercise), dental erosion (perimylolysis), and lab findings consistent with purging (hypokalemia, metabolic alkalosis). First-line treatment: CBT-E + fluoxetine 60 mg/day (both are first-line and have additive benefit). She does NOT have AN because her weight is normal.",
+          "difficulty": "medium",
+          "board_topic": "BN Diagnosis and Treatment"
+        },
+        {
+          "id": "VIG-003",
+          "type": "case_vignette",
+          "clinical_stem": "A 45-year-old man with a BMI of 35 presents with concerns about eating. He reports eating large amounts of food rapidly 4–5 times per week, feeling disgusted with himself afterward, and experiencing significant distress. He does not vomit or use laxatives. He has tried multiple diets without success. He has comorbid depression and hypertension.",
+          "question": "What is the MOST appropriate medication to address his eating behavior?",
+          "choices": {
+            "A": "Fluoxetine 60 mg",
+            "B": "Lisdexamfetamine (Vyvanse) 30–70 mg",
+            "C": "Olanzapine 5 mg",
+            "D": "Naltrexone 50 mg"
+          },
+          "answer": "B",
+          "explanation": "This patient has BED (episodes ≥1x/week, no compensatory behaviors, marked distress). Lisdexamfetamine (Vyvanse) is the ONLY FDA-approved medication for moderate-to-severe BED. It reduces binge frequency. Given his hypertension and cardiovascular risk, the prescriber should carefully monitor blood pressure on a stimulant, but it remains FDA-approved and indicated. CBT-E is first-line psychotherapy.",
+          "difficulty": "medium",
+          "board_topic": "BED Pharmacotherapy"
+        },
+        {
+          "id": "VIG-004",
+          "type": "case_vignette",
+          "clinical_stem": "A 14-year-old boy is brought in because he refuses to eat most foods. He will only eat 5–6 'safe' foods (plain pasta, white bread, apple juice). He has had this pattern since age 3. He has never had a binge episode and does not fear weight gain or express concern about his body shape. He is significantly underweight (BMI < 5th percentile). He has no food allergy. He gags at the sight or smell of most foods.",
+          "question": "What is the MOST likely DSM-5 diagnosis?",
+          "choices": {
+            "A": "Anorexia Nervosa, restricting type",
+            "B": "Specific Phobia, food type",
+            "C": "Avoidant/Restrictive Food Intake Disorder (ARFID)",
+            "D": "Selective mutism with food avoidance"
+          },
+          "answer": "C",
+          "explanation": "This is a classic presentation of ARFID: avoidance based on sensory characteristics (smell, texture), early childhood onset, no fear of weight gain or body image disturbance, limited food variety, and nutritional/growth impairment. ARFID can be driven by sensory sensitivity (most common), lack of interest in food, or fear of aversive consequences. It differs from AN by the absence of weight/shape concerns.",
+          "difficulty": "easy",
+          "board_topic": "ARFID Diagnosis"
+        },
+        {
+          "id": "VIG-005",
+          "type": "case_vignette",
+          "clinical_stem": "A 19-year-old woman with severe restricting-type AN is admitted after syncope. BMI is 14.2, heart rate 44 bpm, and blood pressure 86/52 mmHg. Refeeding is started. On hospital day 3 she develops new weakness and mild dyspnea. Labs show phosphorus 1.1 mg/dL, potassium 3.1 mEq/L, magnesium 1.5 mg/dL.",
+          "question": "What is the BEST immediate management priority?",
+          "choices": {
+            "A": "Increase calories rapidly to reverse catabolism",
+            "B": "Begin intensive exercise to reduce edema risk",
+            "C": "Treat suspected refeeding syndrome with prompt electrolyte repletion and careful monitored refeeding",
+            "D": "Discontinue nutrition support until all labs normalize"
+          },
+          "answer": "C",
+          "explanation": "This presentation is classic for refeeding syndrome with severe hypophosphatemia and associated electrolyte deficits. Immediate management includes phosphate/potassium/magnesium repletion, cardiac monitoring, and carefully titrated nutritional advancement rather than abrupt cessation or aggressive calorie escalation.",
+          "difficulty": "hard",
+          "board_topic": "Refeeding Syndrome Management"
+        }
+      ]
+    },
+    {
+      "name": "True or False",
+      "questions": [
+        {
+          "id": "TF-001",
+          "type": "true_false",
+          "question": "Amenorrhea (absence of menstruation) is a required diagnostic criterion for Anorexia Nervosa in DSM-5.",
+          "answer": "False",
+          "explanation": "DSM-5 REMOVED amenorrhea as a required criterion for AN. This change was made because: (1) it excluded males, (2) some women with AN on oral contraceptives have withdrawal bleeds, and (3) some women with AN retain menstrual function despite low weight. Amenorrhea is still a COMMON FINDING in AN but is NOT required.",
+          "difficulty": "easy",
+          "board_topic": "DSM-5 Changes – AN"
+        },
+        {
+          "id": "TF-002",
+          "type": "true_false",
+          "question": "Patients with Bulimia Nervosa are always underweight.",
+          "answer": "False",
+          "explanation": "BN typically occurs at normal or above-normal weight (unlike AN). Being underweight and meeting BN criteria would actually meet criteria for AN binge-purge subtype (if weight is significantly low). This is a common misconception tested on boards.",
+          "difficulty": "easy",
+          "board_topic": "BN Presentation"
+        },
+        {
+          "id": "TF-003",
+          "type": "true_false",
+          "question": "Cognitive Behavioral Therapy (CBT-E) is considered the first-line psychotherapy for adults with both Bulimia Nervosa and Binge Eating Disorder.",
+          "answer": "True",
+          "explanation": "CBT-E (enhanced CBT) is the gold-standard first-line psychotherapy for both BN and BED in adults, targeting the core cognitive psychopathology (overvaluation of shape and weight). It also has evidence for AN, though the evidence base for AN is less robust.",
+          "difficulty": "easy",
+          "board_topic": "CBT-E Indications"
+        },
+        {
+          "id": "TF-004",
+          "type": "true_false",
+          "question": "Lisdexamfetamine (Vyvanse) is FDA-approved for treating both Bulimia Nervosa and Binge Eating Disorder.",
+          "answer": "False",
+          "explanation": "Lisdexamfetamine is FDA-approved ONLY for BED (and ADHD). It is NOT approved for BN. For BN, the FDA-approved medication is fluoxetine at 60 mg/day. This distinction is commonly tested.",
+          "difficulty": "medium",
+          "board_topic": "FDA Approvals – Eating Disorders"
+        },
+        {
+          "id": "TF-005",
+          "type": "true_false",
+          "question": "Refeeding syndrome in Anorexia Nervosa is primarily characterized by dangerously elevated phosphate levels.",
+          "answer": "False",
+          "explanation": "Refeeding syndrome is characterized by HYPOPHOSPHATEMIA (dangerously LOW phosphate), not elevated. When carbohydrates are reintroduced after starvation, insulin release drives phosphate into cells, depleting serum phosphate and impairing ATP production in all organ systems.",
+          "difficulty": "medium",
+          "board_topic": "Refeeding Syndrome – Lab Findings"
+        },
+        {
+          "id": "TF-006",
+          "type": "true_false",
+          "question": "A QTc interval greater than 500 ms in a severely malnourished patient with AN increases risk of life-threatening ventricular arrhythmias.",
+          "answer": "True",
+          "explanation": "QTc >500 ms is a major cardiac red flag and can precede torsades de pointes or ventricular fibrillation, especially in the setting of hypokalemia/hypomagnesemia. This finding supports urgent medical monitoring and electrolyte correction.",
+          "difficulty": "medium",
+          "board_topic": "Cardiac Risk – AN"
+        },
+        {
+          "id": "TF-007",
+          "type": "true_false",
+          "question": "SSRIs are reliably effective as standalone treatment for weight restoration in acute, severely underweight Anorexia Nervosa.",
+          "answer": "False",
+          "explanation": "In acute severe AN, malnutrition-related neurobiology may blunt antidepressant benefit. Nutritional rehabilitation and structured psychotherapy are first-line for weight restoration; SSRIs may be considered later for comorbid mood/anxiety symptoms after partial weight restoration.",
+          "difficulty": "medium",
+          "board_topic": "AN Treatment Principles"
+        }
+      ]
+    }
+  ]
+}
