@@ -1,183 +1,182 @@
 #!/usr/bin/env python3
-    with st.expander("Edit or delete a question", expanded=False):
-        st.markdown("### Edit or delete an existing question")
-        editable_flat = _flatten_questions(quiz_bank)
+"""Streamlit frontend for generating eating-disorders quiz PowerPoint decks."""
 
-        if not editable_flat:
-            st.info("No existing questions to edit yet.")
-        else:
-            edit_option_map = {
-                _question_label(item): item["id"]
-                for item in editable_flat
-            }
-            edit_choice = st.selectbox(
-                "Select question to edit",
-                options=["-- Select question --", *edit_option_map.keys()],
+import io
+import json
+import random
+import tempfile
+from pathlib import Path
+
+import streamlit as st
+from pptx import Presentation
+
+from generate_quiz_pptx import QUIZ_BANK_PATH, _load_quiz_bank, build_presentation
+
+
+st.set_page_config(page_title="Eating Disorders Quiz PPT Builder", layout="wide")
+
+st.title("Eating Disorders Quiz PPT Builder")
+st.caption("Generate customized quiz decks and append them to existing PowerPoints.")
+
+
+def _flatten_questions(quiz_bank: dict) -> list[dict]:
+    flat = []
+    for category in quiz_bank.get("categories", []):
+        category_name = category.get("name", "Uncategorized")
+        for question in category.get("questions", []):
+            flat.append(
+                {
+                    "id": question.get("id", "UNKNOWN"),
+                    "type": question.get("type", "multiple_choice"),
+                    "category": category_name,
+                    "question": question.get("question", ""),
+                }
+            )
+    return flat
+
+
+def _build_selected_bank(quiz_bank: dict, selected_ids: set[str]) -> dict:
+    categories = []
+    for category in quiz_bank.get("categories", []):
+        questions = [
+            question
+            for question in category.get("questions", [])
+            if question.get("id") in selected_ids
+        ]
+        if questions:
+            categories.append(
+                {
+                    "name": category.get("name", "Uncategorized"),
+                    "questions": questions,
+                }
             )
 
-            if edit_choice != "-- Select question --":
-                edit_qid = edit_option_map[edit_choice]
-                current_category, _current_idx, current_question = _find_question_entry(quiz_bank, edit_qid)
+    metadata = dict(quiz_bank.get("metadata", {}))
+    metadata["selection_count"] = len(selected_ids)
+    return {"metadata": metadata, "categories": categories}
 
-                if current_question is not None:
-                    current_type = current_question.get("type", "multiple_choice")
-                    current_choices = current_question.get("choices", {})
-                    category_options = [c.get("name", "Uncategorized") for c in quiz_bank.get("categories", [])]
-                    current_category_name = current_category.get("name", "Uncategorized")
-                    if current_category_name not in category_options:
-                        category_options.append(current_category_name)
 
-                    with st.form("edit_question_form"):
-                        edit_q_id = st.text_input("Question ID", value=current_question.get("id", "")).strip()
-                        edit_q_type = st.selectbox(
-                            "Question type",
-                            ["multiple_choice", "true_false", "case_vignette"],
-                            index=["multiple_choice", "true_false", "case_vignette"].index(current_type)
-                            if current_type in {"multiple_choice", "true_false", "case_vignette"}
-                            else 0,
-                        )
-                        edit_category = st.selectbox(
-                            "Category",
-                            category_options,
-                            index=category_options.index(current_category_name),
-                        )
-                        edit_board_topic = st.text_input(
-                            "Board topic label",
-                            value=current_question.get("board_topic", ""),
-                        ).strip()
-                        edit_difficulty = st.selectbox(
-                            "Difficulty",
-                            ["easy", "medium", "hard"],
-                            index=["easy", "medium", "hard"].index(current_question.get("difficulty", "medium"))
-                            if current_question.get("difficulty", "medium") in {"easy", "medium", "hard"}
-                            else 1,
-                        )
-                        edit_question_text = st.text_area(
-                            "Question stem",
-                            value=current_question.get("question", ""),
-                            height=110,
-                        ).strip()
+def _question_label(question: dict) -> str:
+    preview = question.get("question", "").strip().replace("\n", " ")
+    if len(preview) > 110:
+        preview = f"{preview[:107]}..."
+    return (
+        f"{question.get('id', 'UNKNOWN')} | "
+        f"{question.get('type', 'multiple_choice')} | "
+        f"{question.get('category', 'Uncategorized')} | "
+        f"{preview}"
+    )
 
-                        edit_clinical_stem = ""
-                        edit_answer = ""
-                        edit_choices = {}
 
-                        if edit_q_type in {"multiple_choice", "case_vignette"}:
-                            edit_choice_col_1, edit_choice_col_2 = st.columns(2)
-                            with edit_choice_col_1:
-                                edit_choice_a = st.text_input("Choice A", value=current_choices.get("A", "")).strip()
-                                edit_choice_b = st.text_input("Choice B", value=current_choices.get("B", "")).strip()
-                            with edit_choice_col_2:
-                                edit_choice_c = st.text_input("Choice C", value=current_choices.get("C", "")).strip()
-                                edit_choice_d = st.text_input("Choice D", value=current_choices.get("D", "")).strip()
+def _all_question_ids(quiz_bank: dict) -> set[str]:
+    ids = set()
+    for category in quiz_bank.get("categories", []):
+        for question in category.get("questions", []):
+            qid = question.get("id")
+            if qid:
+                ids.add(qid)
+    return ids
 
-                            edit_choices = {
-                                "A": edit_choice_a,
-                                "B": edit_choice_b,
-                                "C": edit_choice_c,
-                                "D": edit_choice_d,
-                            }
-                            edit_answer = st.selectbox(
-                                "Correct answer",
-                                ["A", "B", "C", "D"],
-                                index=["A", "B", "C", "D"].index(current_question.get("answer", "A"))
-                                if current_question.get("answer", "A") in {"A", "B", "C", "D"}
-                                else 0,
-                            ).strip()
 
-                            if edit_q_type == "case_vignette":
-                                edit_clinical_stem = st.text_area(
-                                    "Clinical stem",
-                                    value=current_question.get("clinical_stem", ""),
-                                    height=120,
-                                ).strip()
+def _category_map(quiz_bank: dict) -> dict[str, dict]:
+    return {
+        category.get("name", "Uncategorized"): category
+        for category in quiz_bank.get("categories", [])
+    }
 
-                        if edit_q_type == "true_false":
-                            current_tf_answer = str(current_question.get("answer", "true")).strip().lower()
-                            edit_answer = st.selectbox(
-                                "Correct answer",
-                                ["true", "false"],
-                                index=0 if current_tf_answer == "true" else 1,
-                            ).strip()
 
-                        edit_explanation = st.text_area(
-                            "Explanation",
-                            value=current_question.get("explanation", ""),
-                            height=120,
-                        ).strip()
+def _add_category_if_missing(quiz_bank: dict, category_name: str):
+    category_name = category_name.strip()
+    if not category_name:
+        return
+    existing = _category_map(quiz_bank)
+    if category_name not in existing:
+        quiz_bank.setdefault("categories", []).append({"name": category_name, "questions": []})
 
-                        save_edit_clicked = st.form_submit_button("Save changes")
 
-                        if save_edit_clicked:
-                            existing_ids = _all_question_ids(quiz_bank)
+def _add_question_to_bank(quiz_bank: dict, category_name: str, question: dict):
+    _add_category_if_missing(quiz_bank, category_name)
+    categories = _category_map(quiz_bank)
+    categories[category_name].setdefault("questions", []).append(question)
 
-                            if not edit_q_id:
-                                st.error("Question ID is required.")
-                            elif edit_q_id != edit_qid and edit_q_id in existing_ids:
-                                st.error("Question ID already exists. Use a unique ID.")
-                            elif not edit_question_text:
-                                st.error("Question stem is required.")
-                            elif not edit_explanation:
-                                st.error("Explanation is required.")
-                            elif edit_q_type in {"multiple_choice", "case_vignette"} and any(
-                                not value for value in edit_choices.values()
-                            ):
-                                st.error("All choices A-D are required for this question type.")
-                            elif edit_q_type == "case_vignette" and not edit_clinical_stem:
-                                st.error("Clinical stem is required for case vignette questions.")
-                            else:
-                                updated_question = {
-                                    "id": edit_q_id,
-                                    "type": edit_q_type,
-                                    "question": edit_question_text,
-                                    "answer": edit_answer,
-                                    "explanation": edit_explanation,
-                                    "difficulty": edit_difficulty,
-                                    "board_topic": edit_board_topic or edit_category,
-                                }
 
-                                if edit_q_type in {"multiple_choice", "case_vignette"}:
-                                    updated_question["choices"] = edit_choices
-                                if edit_q_type == "case_vignette":
-                                    updated_question["clinical_stem"] = edit_clinical_stem
+def _all_questions_with_category(quiz_bank: dict):
+    for category in quiz_bank.get("categories", []):
+        category_name = category.get("name", "Uncategorized")
+        for question in category.get("questions", []):
+            yield category_name, question
 
-                                old_category = current_category_name
-                                _delete_question_from_bank(quiz_bank, edit_qid)
-                                _add_question_to_bank(quiz_bank, edit_category, updated_question)
 
-                                if "selected_question_ids" in st.session_state:
-                                    selected_set = set(st.session_state["selected_question_ids"])
-                                    if edit_qid in selected_set:
-                                        selected_set.remove(edit_qid)
-                                        selected_set.add(edit_q_id)
-                                        st.session_state["selected_question_ids"] = sorted(selected_set)
+def _merge_quiz_banks(base_bank: dict, incoming_bank: dict, overwrite_existing: bool) -> tuple[int, int]:
+    """Merge incoming questions into base bank by question ID.
 
-                                st.success(
-                                    f"Updated question {edit_qid} → {edit_q_id} "
-                                    f"({old_category} → {edit_category})."
-                                )
-                                st.rerun()
+    Returns tuple: (added_count, updated_count)
+    """
+    base_index = {}
+    for category_name, question in _all_questions_with_category(base_bank):
+        qid = question.get("id")
+        if qid:
+            base_index[qid] = (category_name, question)
 
-                    delete_confirm = st.checkbox(
-                        f"Confirm delete question {edit_qid}",
-                        key=f"confirm_delete_{edit_qid}",
-                    )
-                    if st.button("Delete selected question", key=f"delete_button_{edit_qid}"):
-                        if not delete_confirm:
-                            st.error("Please confirm deletion first.")
-                        else:
-                            deleted = _delete_question_from_bank(quiz_bank, edit_qid)
-                            if deleted:
-                                if "selected_question_ids" in st.session_state:
-                                    st.session_state["selected_question_ids"] = [
-                                        qid
-                                        for qid in st.session_state["selected_question_ids"]
-                                        if qid != edit_qid
-                                    ]
-                                st.success(f"Deleted question {edit_qid}.")
-                                st.rerun()
-                            else:
-                                st.error("Question not found.")
+    added_count = 0
+    updated_count = 0
+
+    for incoming_category_name, incoming_question in _all_questions_with_category(incoming_bank):
+        incoming_id = incoming_question.get("id")
+        if not incoming_id:
+            continue
+
+        if incoming_id in base_index:
+            if not overwrite_existing:
+                continue
+
+            current_category_name, _current_question = base_index[incoming_id]
+            _delete_question_from_bank(base_bank, incoming_id)
+            _add_question_to_bank(
+                base_bank,
+                incoming_category_name or current_category_name,
+                json.loads(json.dumps(incoming_question)),
+            )
+            updated_count += 1
+        else:
+            _add_question_to_bank(
+                base_bank,
+                incoming_category_name,
+                json.loads(json.dumps(incoming_question)),
+            )
+            added_count += 1
+
+    return added_count, updated_count
+
+
+def _find_question_entry(quiz_bank: dict, question_id: str):
+    for category in quiz_bank.get("categories", []):
+        for idx, question in enumerate(category.get("questions", [])):
+            if question.get("id") == question_id:
+                return category, idx, question
+    return None, None, None
+
+
+def _delete_question_from_bank(quiz_bank: dict, question_id: str) -> bool:
+    category, idx, _question = _find_question_entry(quiz_bank, question_id)
+    if category is None:
+        return False
+    category.get("questions", []).pop(idx)
+    return True
+
+
+st.subheader("1) Quiz Bank")
+use_default_bank = st.checkbox("Use default quiz bank", value=True)
+uploaded_bank = None
+if not use_default_bank:
+    uploaded_bank = st.file_uploader(
+        "Upload quiz bank JSON",
+        type=["json"],
+        help="Upload a JSON file following the same schema as questions/quiz_bank.json.",
+    )
+
+quiz_bank = None
+try:
     if use_default_bank:
         quiz_bank = _load_quiz_bank(QUIZ_BANK_PATH)
     elif uploaded_bank is not None:
@@ -350,24 +349,26 @@ with st.expander("Add categories/questions from the frontend", expanded=False):
                     st.success(f"Added question {q_id} to {selected_category}.")
                     st.rerun()
 
-    st.markdown("### Edit or delete an existing question")
-    editable_flat = _flatten_questions(quiz_bank)
+    with st.expander("Edit or delete a question", expanded=False):
+        st.markdown("### Edit or delete an existing question")
+        editable_flat = _flatten_questions(quiz_bank)
 
-    if not editable_flat:
-        st.info("No existing questions to edit yet.")
-    else:
-        edit_option_map = {
-            _question_label(item): item["id"]
-            for item in editable_flat
-        }
-        edit_choice = st.selectbox(
-            "Select question to edit",
-            options=["-- Select question --", *edit_option_map.keys()],
-        )
+        if not editable_flat:
+            st.info("No existing questions to edit yet.")
+        else:
+            edit_option_map = {
+                _question_label(item): item["id"]
+                for item in editable_flat
+            }
+            current_question = None
+            edit_choice = st.selectbox(
+                "Select question to edit",
+                options=["-- Select question --", *edit_option_map.keys()],
+            )
 
-        if edit_choice != "-- Select question --":
-            edit_qid = edit_option_map[edit_choice]
-            current_category, _current_idx, current_question = _find_question_entry(quiz_bank, edit_qid)
+            if edit_choice != "-- Select question --":
+                edit_qid = edit_option_map[edit_choice]
+                current_category, _current_idx, current_question = _find_question_entry(quiz_bank, edit_qid)
 
             if current_question is not None:
                 current_type = current_question.get("type", "multiple_choice")
