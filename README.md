@@ -147,6 +147,42 @@ In the browser UI you can:
 - Choose whether generated slides go at the start or end of the template
 - Download the generated PowerPoint directly
 
+#### How to Add a Question in the Streamlit App
+
+1. **Open the app** in your browser (`http://localhost:8501` after running `streamlit run app.py`).
+
+2. **Find the "Edit Question Bank" expander** — it is labeled **"1b) Edit Question Bank (Optional)"** and sits just below the quiz-bank source selector near the top of the page. Click on **"Add categories/questions from the frontend"** to expand it.
+
+3. **Optionally add a new category** first:
+   - Type the new category name in the *"New category name"* text field.
+   - Click **"Add category"** to save it.
+   - Skip this step if your question belongs to an existing category.
+
+4. **Select the question type** from the *"Question type"* dropdown:
+   - `multiple_choice` — four answer choices (A–D)
+   - `true_false` — True or False
+   - `case_vignette` — clinical stem + four answer choices
+
+5. **Choose a category** from the *"Category"* dropdown (includes any newly added categories).
+
+6. **Fill in the "Add a new question" form**:
+   | Field | Required | Notes |
+   |---|---|---|
+   | Question ID | ✅ | Must be unique, e.g. `CUSTOM-001` |
+   | Board topic label | — | Short label shown on the slide header |
+   | Difficulty | ✅ | `easy`, `medium`, or `hard` |
+   | Question stem | ✅ | The full question text |
+   | Choice A / B / C / D | Multiple choice & vignette | All four choices required |
+   | Correct answer | ✅ | Select the correct letter (or True/False) |
+   | Clinical stem | Vignette only | Patient scenario that precedes the question |
+   | Explanation | ✅ | Teaching-point text shown on the answer-reveal slide |
+
+7. **Click "Add question to bank"** — the question is added immediately to the in-memory quiz bank and you will see a green success message.
+
+8. **Download the updated bank** (optional) — click **"Download updated quiz bank JSON"** at the bottom of the expander to save the new question permanently. You can re-upload this file next time using the *"Import previously edited bank"* section, or replace the `questions/quiz_bank.json` file in the repository.
+
+9. **Generate your PowerPoint** — scroll to *"2) Select Questions"*, pick the new question (search by ID), then click **"Generate PowerPoint"** and download the file.
+
 ---
 
 ## Question Bank Topics
